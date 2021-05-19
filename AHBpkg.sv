@@ -13,7 +13,7 @@ package AHBpkg;
 	
 	typedef enum bit [2:0] {BYTE,HALFWORD,WORD,WORD2,WORD4,WORD8,WORD16,WORD16,WORD32} HSIZE_TYPE;
 
-	typedef enum bit {OKAY,ERROR1} HRESP_TYPE;
+	typedef enum bit {OKAY,ERROR} HRESP_TYPE;
 	
 	typedef enum bit {READ,WRITE} HWRITE_TYPE;
 
