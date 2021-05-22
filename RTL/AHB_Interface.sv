@@ -204,5 +204,25 @@ endtask
 					input HCLK,
 					input HRESETn
 					);
+	
+	clocking monitor_in_cb @(posedge HCLK);
+		
+                default input #1 output #0;
+
+                input HRESETn;
+                input HREADY;
+                input HTRANS;
+                input HBURST;
+                input HSIZE;
+                input HWRITE;
+                input HADDR;
+                input HWDATA;
+                input HREADY;
+                input HRESP;
+                input HRDATA;
+
+        endclocking
 					
 endinterface
+
+
