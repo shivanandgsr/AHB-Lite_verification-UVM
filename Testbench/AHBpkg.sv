@@ -4,7 +4,7 @@ package AHBpkg;
 	parameter DATAWIDTH   = 32;
 	parameter ADDRWIDTH   = 32;
 	
-	parameter SLAVE_DATAWIDTH = 10;
+	parameter SLAVE_DATAWIDTH = 32;
 	parameter SLAVE_ADDRWIDTH = 10;
 
 	typedef enum bit [1:0] {IDLE,BUSY,NONSEQ,SEQ} HTRANS_TYPE;
