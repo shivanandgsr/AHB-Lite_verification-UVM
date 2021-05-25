@@ -40,6 +40,7 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -48,7 +49,27 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -56,24 +77,55 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
-<<<<<<< Updated upstream
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
-=======
-		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
-		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
->>>>>>> Stashed changes
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -81,9 +133,27 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -91,8 +161,25 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
-		
+		// slave 1
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -100,6 +187,23 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'hfff});
 		
 		
 	endtask
@@ -119,6 +223,7 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -126,7 +231,28 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -134,27 +260,83 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
-		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
-		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd0,10'd2});
-		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
-		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
-		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd1,10'd2});
-		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -162,7 +344,25 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -170,6 +370,23 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'hfff});
 	endtask
 endclass
 
@@ -187,6 +404,7 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -194,7 +412,26 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -202,9 +439,27 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
@@ -212,7 +467,25 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -220,9 +493,27 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -230,7 +521,25 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -238,6 +547,23 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'hfff});
 		
 	endtask
 endclass
@@ -256,6 +582,7 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -263,7 +590,28 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -271,9 +619,29 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
@@ -281,7 +649,25 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -289,9 +675,27 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -299,7 +703,25 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -307,6 +729,23 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'hfff});
 		
 	endtask
 endclass
@@ -325,6 +764,7 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -332,17 +772,58 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
-		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
-		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
-		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd2});
-		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
-		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
-		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
-		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		// slave1
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
@@ -350,7 +831,25 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -358,9 +857,27 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -368,7 +885,25 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -376,6 +911,23 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'hfff});
 		
 	endtask
 endclass
@@ -394,6 +946,7 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -401,7 +954,28 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -409,9 +983,29 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
@@ -419,7 +1013,25 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -427,9 +1039,27 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -437,7 +1067,25 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -445,6 +1093,23 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'hfff});
 			
 	endtask
 endclass
@@ -463,6 +1128,7 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -470,7 +1136,28 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -478,9 +1165,29 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
@@ -488,7 +1195,25 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -496,9 +1221,27 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -506,7 +1249,25 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -514,6 +1275,23 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'hfff});
 	endtask
 endclass
 
@@ -531,6 +1309,7 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		//
 		// HSIZE == BYTE
 		//
+		// slave 0
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd2});
@@ -538,7 +1317,28 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'hfff});
 		
+		
+		// slave1
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd2});
@@ -546,9 +1346,29 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = HALFWORD
 		//
+		// slave 0
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
@@ -556,7 +1376,25 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -564,9 +1402,27 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'hfff});
 		//
 		// HSIZE = WORD
 		//
+		// slave 0
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd4});
@@ -574,7 +1430,25 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'hfff});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'hfff});
 		
+		// slave 1
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd4});
@@ -582,6 +1456,23 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd4});
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'hfff});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'hfff});
 		
 	endtask
 endclass
