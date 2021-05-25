@@ -4,7 +4,29 @@ class AHB_coverage extends uvm_subscriber #(AHB_sequence_item);
 
   AHB_sequence_item seq_item_data;
 
-  covergroup AHB_inputs_coverage;
+
+
+  function new (string name = "AHB_coverage",uvm_component parent = null);
+    super.new (name,parent);
+    AHB_functional_coverage = new();
+    sequence_of_operations = new();
+  endfunction
+
+  function void write(AHB_sequence_item pkt);
+         fork
+            AHB_functional_coverage.sample();
+            if(pkt.HTRANS == NONSEQ)
+            begin
+              sequence_of_operations.sample();
+              prev_addr_2 = prev_addr_1;
+              prev_aadr_1 = pkt.HADDR;
+            end
+         join
+   endfunction : write
+
+
+
+  covergroup AHB_functional_coverage;
 //------------------------------------------------------------------------Coverage for inputs to  DUT--------------------------------------------------------------------------------------------------
 
    selection_of_two_slaves:  coverpoint seq_item_data.HADDR[10]  {
