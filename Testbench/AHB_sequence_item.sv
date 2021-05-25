@@ -1,46 +1,67 @@
 import AHBpkg::*;
+import uvm_pkg::*;
+`include "uvm_macros.svh"
 
 class AHB_sequence_item extends uvm_sequence_item;
 
 	`uvm_object_utils(AHB_sequence_item)
 	
-	rand HTRANS HTRANS[];				// Transfer type array
+	rand HTRANS_TYPE HTRANS[];			// Transfer type array
     rand HSIZE_TYPE HSIZE;				// Burst size 
     rand HBURST_TYPE HBURST;			// Burst type
     rand HWRITE_TYPE HWRITE;			// Read or write signal
 	rand bit [DATAWIDTH-1:0] HWDATA[];	// Write data array
-	rand bit [ADDRWIDTH-1:0] HADDR[];	// Address array
+	rand bit [ADDRWIDTH-1:0] HADDR[];	// HADDR array
 	
 	bit HREADY;							
 	HRESP_TYPE HRESP;					// Response type (output signal)
 	bit [DATAWIDTH-1:0] HRDATA;			// Read data 
 
-    rand bit BUSY[];					// Array to store BUSY positions
+    rand bit BUSY_P[];					// Array to store BUSY positions
     rand int NUM_BUSY;					// No. of BUSY states
 	
-	extern function new(string name = "AHB_sequence_item");
-	extern function void post_randomize();
+	function new (string name = "AHB_sequence_item");
+		super.new(name);
+	endfunction
     
-
+	function void post_randomize();
+	
+		int COUNT;
+		if(HBURST != SINGLE)
+			foreach(BUSY[i])
+			begin
+				if(BUSY[i] && i != 0)
+				begin
+					if(HBURST != INCR && i != HTRANS.size - 1)
+						HTRANS[i] = BUSY;
+					else 
+						HTRANS[i] = BUSY;
+					COUNT++;
+				end
+				if(COUNT == NUM_BUSY)
+					break;
+			end
+	endfunction
+	
     constraint BUSY_COUNT{
                             NUM_BUSY inside{[0:HADDR.size]};
                         }
 
     constraint BUSY_SIZE{
-                           BUSY.size == HTRANS.size;
+                           BUSY_P.size == HTRANS.size;
                         }
 	constraint BUSY_POSITION{
-								BUSY.sum() == NUM_BUSY;
+								BUSY_P.sum() == NUM_BUSY;
 							}
 	constraint NOBUSY_FIRST{
-								BUSY[0] != '1;
+								BUSY_P[0] != '1;
 							}
-	constraint HWDATA{
+	constraint hwdata{
 						HWDATA.size == HADDR.size;
                      }
 
-    constraint HSIZE{
-						HSIZE <= WORD;
+    constraint hsize{
+						HSIZE == WORD;
                     }
 						
 	constraint AddrHighbits {foreach(HADDR[i])
@@ -76,12 +97,18 @@ class AHB_sequence_item extends uvm_sequence_item;
 								else if(HBURST inside{INCR16,WRAP16})
 									HADDR[0][9:0] <= (1024 - 16*(2**HSIZE));
 								}
-								
+							
 	// HADDR alignment
     constraint ADDR_ALIGNMENT{
-									if(HSIZE != BYTE)
+									if(HSIZE == BYTE)
 										foreach(HADDR[i])
-											HADDR[i][HSIZE-1:0] == '0;
+											HADDR[i][0] == '0;
+									else if(HSIZE == HALFWORD)
+										foreach(HADDR[i])
+											HADDR[i][1:0] == '0;
+									else if(HSIZE == WORD)
+										foreach(HADDR[i])
+											HADDR[i][2:0] == '0;
 								}
 								
 	// HADDR generation in increment BURSTS
@@ -93,29 +120,70 @@ class AHB_sequence_item extends uvm_sequence_item;
 						}
 
 	// HADDR generation in wrapping BURSTS
-    constraint ADDR_WRAP{
+   
+	constraint ADDR_WRAP{
 							if(HBURST == WRAP4)
 							{
-                                foreach(HADDR[i])
-                                    if(i != 0){
-												HADDR[i][$clog2(4*HSIZE)-1:HSIZE] == HADDR[i-1][$clog2(4*HSIZE)-1:HSIZE] + 1;
-												HADDR[i][31:$clog2(4*HSIZE) ] == HADDR[i-1][31:$clog2(4*HSIZE)];
-											  }
+								if(HSIZE == BYTE)
+									foreach(HADDR[i])
+										if(i != 0){
+                                                    HADDR[i][1:0] == HADDR[i-1][1:0] + 1;
+                                                    HADDR[i][31:2] == HADDR[i-1][31:2];
+												  }
+								else if(HSIZE == HALFWORD)
+									foreach(HADDR[i])
+										if(i != 0){
+													HADDR[i][2:1]  == HADDR[i-1][2:1] + 1;
+													HADDR[i][31:3] == HADDR[i-1][31:3];
+												  }
+								else if(HSIZE == WORD)
+									foreach(HADDR[i])
+										if(i != 0){
+													HADDR[i][3:2]  == HADDR[i-1][3:2] + 1;
+													HADDR[i][31:4] == HADDR[i-1][31:4];
+												  }
 							}
 							else if(HBURST == WRAP8)
 							{
-                                foreach(HADDR[i])
-									if(i != 0){
-                                                HADDR[i][$clog2(8*HSIZE)-1:HSIZE] == HADDR[i-1][$clog2(8*HSIZE)-1:HSIZE] + 1;
-                                                HADDR[i][31:$clog2(8*HSIZE) ] == HADDR[i-1][31:$clog2(8*HSIZE)];
-                                               }
+								if(HSIZE == BYTE)
+									foreach(HADDR[i])
+										if(i != 0){
+                                                    HADDR[i][2:0] == HADDR[i-1][2:0] + 1;
+                                                    HADDR[i][31:3] == HADDR[i-1][31:3];
+												  }
+								else if(HSIZE == HALFWORD)
+									foreach(HADDR[i])
+										if(i != 0){
+													HADDR[i][3:1]  == HADDR[i-1][3:2] + 1;
+													HADDR[i][31:4] == HADDR[i-1][31:4];
+												  }
+								else if(HSIZE == WORD)
+									foreach(HADDR[i])
+										if(i != 0){
+													HADDR[i][4:2]  == HADDR[i-1][4:2] + 1;
+													HADDR[i][31:5] == HADDR[i-1][31:5];
+												   }
 							}
-							else if(HBURST == WRAP16){
-                                foreach(HADDR[i])
-									if(i != 0){
-												HADDR[i][$clog2(16*HSIZE)-1:HSIZE] == HADDR[i-1][$clog2(16*HSIZE)-1:HSIZE] + 1;
-												HADDR[i][31:$clog2(16*HSIZE) ] == HADDR[i-1][31:$clog2(16*HSIZE)];
-                                               }
+							else if(HBURST == WRAP16)
+							{
+								if(HSIZE == BYTE)
+									foreach(HADDR[i])
+										if(i != 0){
+                                                    HADDR[i][3:0] == HADDR[i-1][3:0] + 1;
+                                                    HADDR[i][31:4] == HADDR[i-1][31:4];
+												  }
+								else if(HSIZE == HALFWORD)
+									foreach(HADDR[i])
+										if(i != 0){
+													HADDR[i][4:1]  == HADDR[i-1][3:2] + 1;
+													HADDR[i][31:5] == HADDR[i-1][31:5];
+												  }
+								else if(HSIZE == WORD)
+									foreach(HADDR[i])
+										if(i != 0){
+													HADDR[i][5:2] == HADDR[i-1][5:2] + 1;
+													HADDR[i][31:6] == HADDR[i-1][31:6];
+												   }
 							}
 						}
 						
@@ -142,26 +210,4 @@ class AHB_sequence_item extends uvm_sequence_item;
 							}
 
 endclass
-
-function AHB_sequence_item::new (string name = "AHB_sequence_item");
-	super.new(name);
-endfunction
         
-function void AHB_sequence_item::post_randomize();
-	
-	int COUNT;
-	if(HBURST != SINGLE)
-		foreach(BUSY[i])
-		begin
-			if(BUSY[i] && i != 0)
-			begin
-				if(HBURST != INCR && i != HTRANS.size - 1)
-					HTRANS[i] = BUSY;
-				else 
-					HTRANS[i] = BUSY;
-				COUNT++;
-			end
-			if(COUNT == NUM_BUSY)
-				break;
-		end
-endfunction
