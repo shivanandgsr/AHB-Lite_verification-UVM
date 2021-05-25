@@ -21,13 +21,13 @@ interface AHB_Interface (input bit HCLK, input bit HRESETn);
 						HSIZE,
 						HBURST,
 						HTRANS
-				
+
 					output	HRESP,
 						HREADY,
 						HRDATA
 					);
-				
-		clocking drv_cb@(posedge HCLK);
+
+		clocking driver_cb@(posedge HCLK);
 			default input #1 output #0;
 			output 	HTRANS,
 					HBURST,
@@ -35,14 +35,14 @@ interface AHB_Interface (input bit HCLK, input bit HRESETn);
 					HWDATA,
 					HSIZE,
 					HADDR;
-			
+
 			input 	HREADY,
 					HRDATA,
 					HRESP;
 
         endclocking
-       
-		clocking mon_cb@(posedge HCLK);
+
+		clocking monitor_cb@(posedge HCLK);
 			default input #1 output #0;
 
 			input 	HRESETn,
