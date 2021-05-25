@@ -25,7 +25,6 @@ class AHB_coverage extends uvm_subscriber #(AHB_sequence_item);
                                                                     bins INCR8   = {INCR8};
                                                                     bins WRAP16  = {WRAP16};
                                                                     bins INCR16  = {INCR16};
-
                                                                  }
    AHB_transfer_type:        coverpoint seq_item_data.HTRANS     {
                                                                     bins NONSEQ = {NONSEQ};
@@ -101,4 +100,69 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
                                                                     bins all_zeros = {'0};
                                                                     bins other_than_boundaries = default;
                                                                  }
-  }
+}
+//------------------------------------------------------------------Sequence of operations coverage-------------------------------------------------------------------------------------------------------------------------------------------------
+covergroup sequence_of_operations (bit [ADDRWIDTH-1:0] Prev_addr_1,Prev_addr_2){
+
+  HTRANS_sop: coverpoint seq_item_data.HTRANS {
+                                                    bins NONSEQ = {NONSEQ};
+                                                    bins SEQ    = {SEQ};
+                                                    bins BUSY   = {BUSY};
+                                                    bins IDLE   = {IDLE};
+                                                    option.weight = 0;
+                                                }
+
+  selection_of_two_slaves_sop: coverpoint seq_item_data.HADDR[10] {
+                                                                      bins slave0_select = {1'b0};
+                                                                      bins slave1_select = {1'b1};
+                                                                      option.weight = 0;
+                                                                  }
+
+  HSIZE_sop: coverpoint seq_item_data.HSIZE {
+                                              bins BYTE                 = {BYTE};
+                                              bins HALFWORD             = {HALFWORD};
+                                              bins WORD                 = {WORD};
+                                              ignore_bins INVALID_SIZE  = {[3:7]};
+                                              option.weight             = 0;
+                                            }
+ HBURST_sop: coverpoint seq_item_data.HBURST {
+                                                bins SINGLE  = {SINGLE};
+                                                bins INCR    = {INCR};
+                                                bins WRAP4   = {WRAP4};
+                                                bins INCR4   = {INCR4};
+                                                bins WRAP8   = {WRAP8};
+                                                bins INCR8   = {INCR8};
+                                                bins WRAP16  = {WRAP16};
+                                                bins INCR16  = {INCR16};
+                                                option.weight = 0;
+                                             }
+
+HWRITE_sop: coverpoint seq_item_data.HWRITE  {
+                                                bins write_read_same_address =  (1=>0) iff (Prev_addr_1==seq_item_data.HADDR);
+                                                bins read_write_same_address =  (0=>1) iff (Prev_addr_1==seq_item_data.HADDR);
+                                                bins write_write_same_address = (1=>1) iff (Prev_addr_1==seq_item_data.HADDR);
+
+                                                bins write_read_diff_address =  (1=>0) iff (Prev_addr_1!=seq_item_data.HADDR);
+                                                bins read_write_diff_address =  (0=>1) iff (Prev_addr_1!=seq_item_data.HADDR);
+                                                bins write_write_diff_address = (1=>1) iff (Prev_addr_1!=seq_item_data.HADDR);
+                                                bins read_read_diff_address =   (0=>0) iff (Prev_addr_1!=seq_item_data.HADDR);
+
+                                                bins write_write_read_same_address = (1=>1=>0) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins write_read_write_same_address = (1=>0=>1) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins read_write_read_same_address =  (0=>1=>0) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins read_write_write_same_address = (0=>1=>1) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+
+
+                                                bins write1_write2_write1 = (1=>1=>1) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins write1_read2_write1  = (1=>0=>1) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins read1_write2_read1   = (0=>1=>0) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins read1_read2_write1   = (0=>0=>1) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins read1_read2_read1    = (0=>0=>0) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                            }
+
+sop_with_all_Bursts: cross HWRITE_sop, HBURST_sop;
+sop_with_both_slaves: cross HWRITE_sop, selection_of_two_slaves_sop;
+sop_with_all_transfer_types: cross HWRITE_sop, HTRANS_sop;
+sop_with_all_transfer_sizes: cross HWRITE_sop, HSIZE_sop;
+
+}
