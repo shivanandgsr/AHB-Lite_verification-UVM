@@ -62,10 +62,17 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+<<<<<<< Updated upstream
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+=======
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+>>>>>>> Stashed changes
 		
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});

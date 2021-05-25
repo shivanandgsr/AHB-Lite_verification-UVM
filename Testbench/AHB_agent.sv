@@ -3,10 +3,9 @@ class AHB_agent extends uvm_agent;
   
 	`uvm_component_utils(mem_agent)
   
-	AHB_driver    	driver;
-	AHB_sequencer 	sequencer;
-	AHB_monitor_in  monitor_in;
-	AHB_monitor_out	monitor_out;
+	AHB_driver    driver;
+	AHB_sequencer sequencer;
+	AHB_monitor	  monitor;
  
 	function new (string name = "AHB_agent",uvm_component parent=null");
 		super.new(name,parent);
@@ -17,12 +16,11 @@ class AHB_agent extends uvm_agent;
  
 		if(get_is_active() == UVM_ACTIVE) 
 		begin
-			driver = AHB_driver::type_id::create("driver",this);
-			sequencer = AHB_sequencer::type_id::create("sequencer",this);
+			driver 	 = AHB_driver::type_id::create("driver",this);
+			sequencer= AHB_sequencer::type_id::create("sequencer",this);
 		end
  
-		monitor_in 	= AHB_monitor_in::type_id::create("monitor_in",this);
-		monitor_out = AHB_monitor_in::type_id::create("monitor_out",this);
+		monitor	= AHB_monitor::type_id::create("monitor",this);
 	endfunction
  
 	function void connect_phase(uvm_phase phase);

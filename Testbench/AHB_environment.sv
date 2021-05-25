@@ -18,11 +18,8 @@ class AHB_env extends uvm_env;
 		vsequencer	= AHB_virtual_sequencer::type_id::create("vsequencer",this);
 	endfunction
   
-   // remember to add decl macros in scoreboard
-  
 	function void connect_phase(uvm_phase phase);
-		agent.monitor_in.analysis_port.connect(scoreboard.analysis_imp_in);
-		agent.monitor_out.analysis_port.connect(scoreboard.analysis_imp_out);
+		agent.monitor.analysis_port.connect(scoreboard.analysis_imp);
 	endfunction
  
 endclass 
