@@ -3,7 +3,7 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 `include "AHB_sequence_item.sv"
 
-class AHB_base_sequence #(AHB_sequence_item) extends uvm_sequence;
+class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 
 	`uvm_object_utils(AHB_base_sequence)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -12,21 +12,21 @@ class AHB_base_sequence #(AHB_sequence_item) extends uvm_sequence;
 		super.new(name);
 	endfunction
 	
-	function void dseq(ref AHB_sequence_item pkt,HBURST_TYPE HBURST,HSIZE_TYPE HSIZE,HWRITE_TYPE HWRITE,bit [ADDRWIDTH-1:0] ADDRESS,int ADDRSIZE = 4);
+	function void dseq(ref AHB_sequence_item pkt,HBURST_TYPE HBURST,HSIZE_TYPE HSIZE,HWRITE_TYPE HWRITE,bit [ADDRWIDTH-1:0] ADDRESS,int ADDRSIZE);
 		start_item(pkt);
 		if(HBURST == INCR)
-			assert(req.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS;});
+			assert(req.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS;})
 			else
 				uvm_info(get_type_name(),$sformatf("Randomization Failed HBURST = %s ,HSIZE = %s ,HWRITE = %s",HBURST.name,HSIZE.name,HWRITE.name),UVM_MEDIUM);
 		else
-			assert(req.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS && pkt.HADDR.size == ADDRSIZE;});
+			assert(req.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS && pkt.HADDR.size == ADDRSIZE;})
 			else
 				uvm_info(get_type_name(),$sformatf("Randomization Failed HBURST = %s ,HSIZE = %s ,HWRITE = %s",HBURST.name,HSIZE.name,HWRITE.name),UVM_MEDIUM);
 		finish_item(pkt);
 	endfunction
 endclass
 
-class sequence_SINGLE_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_SINGLE_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -62,18 +62,18 @@ class sequence_SINGLE_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
-		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
-		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
 		
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
-		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0);
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd2});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
-		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0);
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		//
 		// HSIZE = WORD
 		//
@@ -98,7 +98,7 @@ class sequence_SINGLE_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_INCR_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_INCR_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -166,7 +166,7 @@ class sequence_INCR_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_INCR4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_INCR4_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR4_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -235,7 +235,7 @@ class sequence_INCR4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_INCR8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_INCR8_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR8_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -304,7 +304,7 @@ class sequence_INCR8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_INCR16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_INCR16_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR16_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -373,7 +373,7 @@ class sequence_INCR16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_WRAP4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_WRAP4_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -442,7 +442,7 @@ class sequence_WRAP4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_WRAP8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_WRAP8_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
@@ -510,7 +510,7 @@ class sequence_WRAP8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 	endtask
 endclass
 
-class sequence_WRAP16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
+class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_WRAP16_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
