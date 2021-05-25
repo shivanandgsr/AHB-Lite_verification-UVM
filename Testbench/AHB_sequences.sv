@@ -1,7 +1,11 @@
+import AHBpkg::*;
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+`include "AHB_sequence_item.sv"
 
 class AHB_base_sequence #(AHB_sequence_item) extends uvm_sequence;
 
-	`uvm_object_utilis(AHB_base_sequence)
+	`uvm_object_utils(AHB_base_sequence)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "AHB_base_sequence");
@@ -24,7 +28,7 @@ endclass
 
 class sequence_SINGLE_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_SINGLE_burst)
+	`uvm_object_utils(sequence_SINGLE_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_SINGLE_burst");
@@ -43,9 +47,26 @@ class sequence_SINGLE_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,SINGLE,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,SINGLE,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd0,10'd0);
+		
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,SINGLE,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -64,12 +85,22 @@ class sequence_SINGLE_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd0,10'd0});
 		
+		
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,SINGLE,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,SINGLE,WORD,WRITE,{21'd0,1'd1,10'd0});
+		
+		
 	endtask
 endclass
 
 class sequence_INCR_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_INCR_burst)
+	`uvm_object_utils(sequence_INCR_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_INCR_burst");
@@ -88,9 +119,25 @@ class sequence_INCR_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd0,10'd2});
+		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd0,10'd0});
+		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,HALFWORD,READ	,{21'd0,1'd1,10'd0});
 		dseq(req,INCR,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -108,12 +155,20 @@ class sequence_INCR_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,INCR,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR,WORD,WRITE,{21'd0,1'd0,10'd0});
+		
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR,WORD,WRITE,{21'd0,1'd1,10'd0});
 	endtask
 endclass
 
 class sequence_INCR4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_INCR4_burst)
+	`uvm_object_utils(sequence_INCR4_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_INCR4_burst");
@@ -132,9 +187,25 @@ class sequence_INCR4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR4,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -153,12 +224,20 @@ class sequence_INCR4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR4,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd0,10'd0});
 		
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		
 	endtask
 endclass
 
 class sequence_INCR8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_INCR8_burst)
+	`uvm_object_utils(sequence_INCR8_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_INCR8_burst");
@@ -177,9 +256,25 @@ class sequence_INCR8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,INCR8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,INCR8,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -198,12 +293,20 @@ class sequence_INCR8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR8,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd0,10'd0});
 		
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		
 	endtask
 endclass
 
 class sequence_INCR16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_INCR16_burst)
+	`uvm_object_utils(sequence_INCR16_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_INCR16_burst");
@@ -222,9 +325,25 @@ class sequence_INCR16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,BYTE,READ ,{21'd0,1'd0,10'd1});
+		dseq(req,INCR16,BYTE,WRITE,{21'd0,1'd0,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,INCR16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -243,12 +362,20 @@ class sequence_INCR16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,INCR16,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd0,10'd0});
 		
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,INCR16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,INCR16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		
 	endtask
 endclass
 
 class sequence_WRAP4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_WRAP4_burst)
+	`uvm_object_utils(sequence_WRAP4_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_WRAP4_burst");
@@ -267,9 +394,25 @@ class sequence_WRAP4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP4,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP4,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP4,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -287,13 +430,21 @@ class sequence_WRAP4_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd0,10'd0});
+		
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP4,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP4,WORD,WRITE,{21'd0,1'd1,10'd0});
 			
 	endtask
 endclass
 
 class sequence_WRAP8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_WRAP8_burst)
+	`uvm_object_utils(sequence_WRAP8_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_WRAP8_burst");
@@ -312,9 +463,25 @@ class sequence_WRAP8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP8,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP8,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP8,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -332,12 +499,20 @@ class sequence_WRAP8_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd0,10'd0});
+		
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP8,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP8,WORD,WRITE,{21'd0,1'd1,10'd0});
 	endtask
 endclass
 
 class sequence_WRAP16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 
-	`uvm_object_utilis(sequence_WRAP16_burst)
+	`uvm_object_utils(sequence_WRAP16_burst)
 	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
 	
 	function new(string name = "sequence_WRAP16_burst");
@@ -356,9 +531,25 @@ class sequence_WRAP16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd2});
 		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd0,10'd1});
 		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd0,10'd1});
+		
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd2});
+		dseq(req,WRAP16,BYTE,READ ,{21'd0,1'd1,10'd1});
+		dseq(req,WRAP16,BYTE,WRITE,{21'd0,1'd1,10'd1});
 		//
 		// HSIZE = HALFWORD
 		//
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd2});
+		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd0,10'd0});
+		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd0,10'd0});
+		
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,HALFWORD,READ ,{21'd0,1'd1,10'd0});
 		dseq(req,WRAP16,HALFWORD,WRITE,{21'd0,1'd1,10'd2});
@@ -376,6 +567,14 @@ class sequence_WRAP16_burst #(AHB_sequence_item) extends AHB_base_sequence ;
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd4});
 		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd0,10'd0});
 		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd0,10'd0});
+		
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd4});
+		dseq(req,WRAP16,WORD,READ ,{21'd0,1'd1,10'd0});
+		dseq(req,WRAP16,WORD,WRITE,{21'd0,1'd1,10'd0});
 		
 	endtask
 endclass
