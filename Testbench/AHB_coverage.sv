@@ -1,8 +1,8 @@
-class AHB_coverage extends uvm_subscriber #(AHB_sequence_item);
+class AHB_coverage extends uvm_subscriber #(AHB_packet);
 
   `uvm_component_utils(AHB_coverage)
 
-  AHB_sequence_item seq_item_data;
+  AHB_packet packet_data;
 
 
 
@@ -12,7 +12,7 @@ class AHB_coverage extends uvm_subscriber #(AHB_sequence_item);
     sequence_of_operations = new();
   endfunction
 
-  function void write(AHB_sequence_item pkt);
+  function void write(AHB_packet pkt);
          fork
             AHB_functional_coverage.sample();
             if(pkt.HTRANS == NONSEQ)
@@ -22,23 +22,23 @@ class AHB_coverage extends uvm_subscriber #(AHB_sequence_item);
               prev_aadr_1 = pkt.HADDR;
             end
          join
-   endfunction : write
+   endfunction
 
 
 
   covergroup AHB_functional_coverage;
 //------------------------------------------------------------------------Coverage for inputs to  DUT--------------------------------------------------------------------------------------------------
 
-   selection_of_two_slaves:  coverpoint seq_item_data.HADDR[10]  {
+   selection_of_two_slaves:  coverpoint packet_data.HADDR[10]  {
                                                                     bins slave0_select = {1'b0};
                                                                     bins slave1_select = {1'b1};
                                                                  }
 
-   AHB_read_write:           coverpoint seq_item_data.HWRITE     {
+   AHB_read_write:           coverpoint packet_data.HWRITE     {
                                                                     bins AHB_read = {1'b0};
                                                                     bins AHB_write = {1'b1};
                                                                  }
-   AHB_Burst_size:           coverpoint seq_item_data.HBURST     {
+   AHB_Burst_size:           coverpoint packet_data.HBURST     {
                                                                     bins SINGLE  = {SINGLE};
                                                                     bins INCR    = {INCR};
                                                                     bins WRAP4   = {WRAP4};
@@ -48,26 +48,26 @@ class AHB_coverage extends uvm_subscriber #(AHB_sequence_item);
                                                                     bins WRAP16  = {WRAP16};
                                                                     bins INCR16  = {INCR16};
                                                                  }
-   AHB_transfer_type:        coverpoint seq_item_data.HTRANS     {
+   AHB_transfer_type:        coverpoint packet_data.HTRANS     {
                                                                     bins NONSEQ = {NONSEQ};
                                                                     bins SEQ    = {SEQ};
                                                                     bins BUSY   = {BUSY};
                                                                     bins IDLE   = {IDLE};
                                                                  }
 
-   AHB_size:                 coverpoint seq_item_data.HSIZE      {
+   AHB_size:                 coverpoint packet_data.HSIZE      {
                                                                     bins BYTE                 = {BYTE};
                                                                     bins HALFWORD             = {HALFWORD};
                                                                     bins WORD                 = {WORD};
                                                                     ignore_bins INVALID_SIZE  = {[3:7]};
                                                                  }
 
-   AHB_address:              coverpoint seq_item_data.HADDR[9:0] {
+   AHB_address:              coverpoint packet_data.HADDR[9:0] {
                                                                     bins all_zeros = {'0};
                                                                     bins all_ones  = {'1};
                                                                     bins other_than_boundaries = default;
                                                                  }
-   AHB_write_data:           coverpoint seq_item_data.HWDATA     {
+   AHB_write_data:           coverpoint packet_data.HWDATA     {
                                                                     bins all_zeros = {'0};
                                                                     bins all_ones  = {'1};
                                                                     bins other_than_boundaries = default;
@@ -112,12 +112,12 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
 //------------------------------------------------------------------------Coverage for output signals-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
-   AHB_slave_response:       coverpoint seq_item_data.HRESP      {
+   AHB_slave_response:       coverpoint packet_data.HRESP      {
                                                                     bins OKAY = {1'b0};
                                                                     bins ERROR = {1'b1};
                                                                  }
 
-  AHB_HRDATA:                coverpoint seq_item_data.HRDATA     {
+  AHB_HRDATA:                coverpoint packet_data.HRDATA     {
                                                                     bins all_ones = {'1};
                                                                     bins all_zeros = {'0};
                                                                     bins other_than_boundaries = default;
@@ -126,7 +126,7 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
 //------------------------------------------------------------------Sequence of operations coverage-------------------------------------------------------------------------------------------------------------------------------------------------
 covergroup sequence_of_operations (bit [ADDRWIDTH-1:0] Prev_addr_1,Prev_addr_2){
 
-  HTRANS_sop: coverpoint seq_item_data.HTRANS {
+  HTRANS_sop: coverpoint packet_data.HTRANS {
                                                     bins NONSEQ = {NONSEQ};
                                                     bins SEQ    = {SEQ};
                                                     bins BUSY   = {BUSY};
@@ -134,20 +134,20 @@ covergroup sequence_of_operations (bit [ADDRWIDTH-1:0] Prev_addr_1,Prev_addr_2){
                                                     option.weight = 0;
                                                 }
 
-  selection_of_two_slaves_sop: coverpoint seq_item_data.HADDR[10] {
+  selection_of_two_slaves_sop: coverpoint packet_data.HADDR[10] {
                                                                       bins slave0_select = {1'b0};
                                                                       bins slave1_select = {1'b1};
                                                                       option.weight = 0;
                                                                   }
 
-  HSIZE_sop: coverpoint seq_item_data.HSIZE {
+  HSIZE_sop: coverpoint packet_data.HSIZE {
                                               bins BYTE                 = {BYTE};
                                               bins HALFWORD             = {HALFWORD};
                                               bins WORD                 = {WORD};
                                               ignore_bins INVALID_SIZE  = {[3:7]};
                                               option.weight             = 0;
                                             }
- HBURST_sop: coverpoint seq_item_data.HBURST {
+ HBURST_sop: coverpoint packet_data.HBURST {
                                                 bins SINGLE  = {SINGLE};
                                                 bins INCR    = {INCR};
                                                 bins WRAP4   = {WRAP4};
@@ -159,27 +159,27 @@ covergroup sequence_of_operations (bit [ADDRWIDTH-1:0] Prev_addr_1,Prev_addr_2){
                                                 option.weight = 0;
                                              }
 
-HWRITE_sop: coverpoint seq_item_data.HWRITE  {
-                                                bins write_read_same_address =  (1=>0) iff (Prev_addr_1==seq_item_data.HADDR);
-                                                bins read_write_same_address =  (0=>1) iff (Prev_addr_1==seq_item_data.HADDR);
-                                                bins write_write_same_address = (1=>1) iff (Prev_addr_1==seq_item_data.HADDR);
+HWRITE_sop: coverpoint packet_data.HWRITE  {
+                                                bins write_read_same_address =  (1=>0) iff (Prev_addr_1==packet_data.HADDR);
+                                                bins read_write_same_address =  (0=>1) iff (Prev_addr_1==packet_data.HADDR);
+                                                bins write_write_same_address = (1=>1) iff (Prev_addr_1==packet_data.HADDR);
 
-                                                bins write_read_diff_address =  (1=>0) iff (Prev_addr_1!=seq_item_data.HADDR);
-                                                bins read_write_diff_address =  (0=>1) iff (Prev_addr_1!=seq_item_data.HADDR);
-                                                bins write_write_diff_address = (1=>1) iff (Prev_addr_1!=seq_item_data.HADDR);
-                                                bins read_read_diff_address =   (0=>0) iff (Prev_addr_1!=seq_item_data.HADDR);
+                                                bins write_read_diff_address =  (1=>0) iff (Prev_addr_1!=packet_data.HADDR);
+                                                bins read_write_diff_address =  (0=>1) iff (Prev_addr_1!=packet_data.HADDR);
+                                                bins write_write_diff_address = (1=>1) iff (Prev_addr_1!=packet_data.HADDR);
+                                                bins read_read_diff_address =   (0=>0) iff (Prev_addr_1!=packet_data.HADDR);
 
-                                                bins write_write_read_same_address = (1=>1=>0) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins write_read_write_same_address = (1=>0=>1) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins read_write_read_same_address =  (0=>1=>0) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins read_write_write_same_address = (0=>1=>1) iff ((Prev_addr_1 == seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins write_write_read_same_address = (1=>1=>0) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins write_read_write_same_address = (1=>0=>1) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins read_write_read_same_address =  (0=>1=>0) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins read_write_write_same_address = (0=>1=>1) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
 
 
-                                                bins write1_write2_write1 = (1=>1=>1) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins write1_read2_write1  = (1=>0=>1) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins read1_write2_read1   = (0=>1=>0) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins read1_read2_write1   = (0=>0=>1) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
-                                                bins read1_read2_read1    = (0=>0=>0) iff ((Prev_addr_1 != seq_item_data.HADDR)&&(Prev_addr_2 == seq_item_data.HADDR));
+                                                bins write1_write2_write1 = (1=>1=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins write1_read2_write1  = (1=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins read1_write2_read1   = (0=>1=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins read1_read2_write1   = (0=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                bins read1_read2_read1    = (0=>0=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == .HADDR));
                                             }
 
 sop_with_all_Bursts: cross HWRITE_sop, HBURST_sop;
@@ -188,3 +188,5 @@ sop_with_all_transfer_types: cross HWRITE_sop, HTRANS_sop;
 sop_with_all_transfer_sizes: cross HWRITE_sop, HSIZE_sop;
 
 }
+
+endclass
