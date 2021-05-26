@@ -1,7 +1,7 @@
 
 import AHBpkg::*;
 
-interface AHB_Interface (input bit HCLK, input bit HRESETn);
+interface AHB_interface (input bit HCLK, input bit HRESETn);
 
         logic HREADY;
 		logic HWRITE;

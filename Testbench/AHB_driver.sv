@@ -7,7 +7,7 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 
 	`uvm_component_utils(AHB_driver)
 	
-	virtual AHB_Interface vif;
+	virtual AHB_interface vif;
 	
 	function new(string name = "AHB_driver",uvm_component parent=null);
 		super.new(name,parent);
@@ -15,7 +15,7 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 	
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		if(!uvm_config_db #(virtual AHB_Interface)::get(this,"","vif",vif))
+		if(!uvm_config_db #(virtual AHB_interface)::get(this,"","vif",vif))
 			`uvm_fatal(get_type_name(),$sformatf("virtual interface must be set for:%s",get_full_name()));
 	endfunction
  

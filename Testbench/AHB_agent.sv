@@ -1,11 +1,16 @@
+import AHBpkg::*;
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+`include "AHB_driver.sv"
+`include "AHB_monitor.sv"
 
 class AHB_agent extends uvm_agent;
   
-	`uvm_component_utils(mem_agent)
+	`uvm_component_utils(AHB_agent)
   
 	AHB_driver    driver;
-	AHB_sequencer sequencer;
 	AHB_monitor	  monitor;
+	uvm_sequencer #(AHB_sequence_item) sequencer;
  
 	function new (string name = "AHB_agent",uvm_component parent=null");
 		super.new(name,parent);

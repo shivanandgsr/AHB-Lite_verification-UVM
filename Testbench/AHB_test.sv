@@ -1,4 +1,9 @@
 
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+`include "AHB_environment.sv"
+`include "AHB_virtual_sequence.sv"
+
 class AHB_test extends uvm_test;
  
   `uvm_component_utils(AHB_test)
@@ -19,11 +24,12 @@ class AHB_test extends uvm_test;
 	endfunction
  
 	task run_phase(uvm_phase phase);
-    
+		super.run_phase(phase);
 		phase.raise_objection(this);
+		
 		vseq.start(env.vsequencer);
+		
 		phase.drop_objection(this);
-	
 	endtask
  
 endclass
