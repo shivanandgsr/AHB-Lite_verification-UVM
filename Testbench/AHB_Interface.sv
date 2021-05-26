@@ -20,7 +20,7 @@ interface AHB_Interface (input bit HCLK, input bit HRESETn);
 						HWDATA,
 						HSIZE,
 						HBURST,
-						HTRANS
+						HTRANS,
 
 					output	HRESP,
 						HREADY,

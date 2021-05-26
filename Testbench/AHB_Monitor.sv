@@ -1,3 +1,5 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
 class AHB_monitor extends uvm_monitor;
 
   `uvm_component_utils(AHB_monitor)
@@ -16,7 +18,7 @@ class AHB_monitor extends uvm_monitor;
     super.build_phase(phase);
     monitor_data = new("monitor_data", this);
     if(! uvm_config_db #(virtual AHB_interface) :: get (this, "","configuration",env_config_h))
-      `uvm_fatal("ERROR IN MONITOR IN INTERFACE")
+      `uvm_fatal("ERROR IN MONITOR IN INTERFACE");
   endfunction
 
   virtual function void connect_phase(uvm_phase phase);
@@ -50,7 +52,7 @@ class AHB_monitor extends uvm_monitor;
     virtual task collect_data();
       @(vintf.monitor_cb);
       @(vintf.monitor_cb);
-      packet_data.HTRANS = prev_HTRANS
+      packet_data.HTRANS = prev_HTRANS;
       packet_data.HSIZE  = prev_HSIZE;
       packet_data.HBURST = prev_HBURST;
       packet_data.HWRITE = prev_HWRITE;
