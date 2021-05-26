@@ -1,14 +1,16 @@
-/*****************************************************************************************/
-///////////Project  : 	ECE 571 - Verification of AHBLITE protocol///
-///////////Team 	: 	Arjun Gopal, Sri Krishna, Nirliptha Bangalore, Udit Kulshreshta///
-///////////Module	:	Slave Module //////////////
-/*****************************************************************************************/
+//Project : Verification of AMBA3 AHB-Lite protocol    //
+//			using Universal Verification Methodology   //																				    
+//													   //															
+// Subject:	ECE 593									   //										                        																															    
+// Guide  : Tom Schubert   							   //													            
+// Date   : May 25th, 2021							   //																		
+// Team	  :	Shivanand Reddy Gujjula,                   //
+//			Sri Harsha Doppalapudi,                    //
+//			Hiranmaye Sarpana Chandu	               //																										
+// Portland State University                           //  
+//                                                     //                                                     
+/////////////////////////////////////////////////////////
 
-
-
-/*Module for AHB Slave*/
-/*Synthesizable memory module*/
-/***This slave has read only addresses from 00h to 03h. It uses HTRANS to see if master sends valid data**/
 module AHBSlaveMemory(
 	input logic HCLK,
 	input logic HRESETn,

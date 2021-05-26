@@ -11,19 +11,19 @@
 //                                                     //                                                     
 /////////////////////////////////////////////////////////
 
-import AHBpkg::*;
+import definesPkg::* ;
 
 interface AHB_interface (input bit HCLK, input bit HRESETn);
 
-        logic HREADY;
-		logic HWRITE;
-		logic [1:0]  HRESP;
-        logic [1:0]  HTRANS;
-        logic [2:0]  HBURST;
-        logic [2:0]  HSIZE;
-        logic [31:0] HADDR;
-        logic [31:0] HWDATA;
-		logic [31:0] HRDATA;
+    logic [ADDRESS_WIDTH-1:0] 	HADDR;
+	logic 				  		HWRITE;
+	logic [HSIZE_WIDTH-1:0]		HSIZE;
+	logic [BURST_SIZE-1:0]		HBURST;
+	logic [TRANSFER_TYPE-1:0]	HTRANS;
+	logic [DATA_WIDTH-1:0]		HWDATA;
+	logic [DATA_WIDTH-1:0]		HRDATA;
+	logic						HREADY;
+	logic						HRESP;
 
 
 		modport DUT (input 	HCLK,

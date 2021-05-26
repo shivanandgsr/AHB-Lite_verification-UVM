@@ -1,9 +1,15 @@
-/*****************************************************************************************/
-///////////Project  : 	ECE 571 - Verification of AHBLITE protocol///
-///////////Team 	: 	Arjun Gopal, Sri Krishna, Nirliptha Bangalore, Udit Kulshreshta///
-///////////Module	:	Slave Top Module //////////////
-/*****************************************************************************************/
-
+//Project : Verification of AMBA3 AHB-Lite protocol    //
+//			using Universal Verification Methodology   //																				    
+//													   //															
+// Subject:	ECE 593									   //										                        																															    
+// Guide  : Tom Schubert   							   //													            
+// Date   : May 25th, 2021							   //																		
+// Team	  :	Shivanand Reddy Gujjula,                   //
+//			Sri Harsha Doppalapudi,                    //
+//			Hiranmaye Sarpana Chandu	               //																										
+// Portland State University                           //  
+//                                                     //                                                     
+/////////////////////////////////////////////////////////
 
 //	let NoOfSlaves = 2;
 `define NoOfSlaves 2
