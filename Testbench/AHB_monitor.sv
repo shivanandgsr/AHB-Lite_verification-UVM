@@ -23,7 +23,7 @@ class AHB_monitor extends uvm_monitor;
 
   virtual AHB_interface.monitor_cb vintf;
   AHB_packet packet_data;
-  
+
   HTRANS_TYPE prev_HTRANS;
   HBURST_TYPE prev_HBURST;
   HSIZE_TYPE prev_HSIZE;
