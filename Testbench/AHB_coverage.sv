@@ -1,35 +1,24 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+//Project : Verification of AMBA3 AHB-Lite protocol    //
+//			using Universal Verification Methodology   //
+//													   //
+// Subject:	ECE 593									   //
+// Guide  : Tom Schubert   							   //
+// Date   : May 25th, 2021							   //
+// Team	  :	Shivanand Reddy Gujjula,                   //
+//			Sri Harsha Doppalapudi,                    //
+//			Hiranmaye Sarpana Chandu	               //
+// Portland State University                           //
+//                                                     //
+/////////////////////////////////////////////////////////
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "AHB_packet.sv"
-=======
->>>>>>> Stashed changes
-//Project : Verification of AMBA3 AHB-Lite protocol    //
-//			using Universal Verification Methodology   //																				    
-//													   //															
-// Subject:	ECE 593									   //										                        																															    
-// Guide  : Tom Schubert   							   //													            
-// Date   : May 25th, 2021							   //																		
-// Team	  :	Shivanand Reddy Gujjula,                   //
-//			Sri Harsha Doppalapudi,                    //
-//			Hiranmaye Sarpana Chandu	               //																										
-// Portland State University                           //  
-//                                                     //                                                     
-/////////////////////////////////////////////////////////
-
-<<<<<<< Updated upstream
-=======
->>>>>>> f7d2124e5fff97465621327f3bdc166104cce605
->>>>>>> Stashed changes
 class AHB_coverage extends uvm_subscriber #(AHB_packet);
 
   `uvm_component_utils(AHB_coverage)
 
   AHB_packet packet_data;
-  
+
   logic [ADDRWIDTH-1:0] Prev_addr_1,Prev_addr_2;
 
 //------------------------------------------------------------------------Coverage for inputs to  DUT--------------------------------------------------------------------------------------------------

@@ -1,38 +1,37 @@
 //Project : Verification of AMBA3 AHB-Lite protocol    //
-//			using Universal Verification Methodology   //																				    
-//													   //															
-// Subject:	ECE 593									   //										                        																															    
-// Guide  : Tom Schubert   							   //													            
-// Date   : May 25th, 2021							   //																		
+//			using Universal Verification Methodology   //
+//													   //
+// Subject:	ECE 593									   //
+// Guide  : Tom Schubert   							   //
+// Date   : May 25th, 2021							   //
 // Team	  :	Shivanand Reddy Gujjula,                   //
 //			Sri Harsha Doppalapudi,                    //
-//			Hiranmaye Sarpana Chandu	               //																										
-// Portland State University                           //  
-//                                                     //                                                     
+//			Hiranmaye Sarpana Chandu	               //
+// Portland State University                           //
+//                                                     //
 /////////////////////////////////////////////////////////
 
 
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "AHB_sequence_item.sv"
 
 class AHB_driver extends uvm_driver #(AHB_sequence_item);
 
 	`uvm_component_utils(AHB_driver)
-	
+
 	virtual AHB_interface vif;
-	
+
 	function new(string name = "AHB_driver",uvm_component parent=null);
 		super.new(name,parent);
 	endfunction
-	
+
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
 		if(!uvm_config_db #(virtual AHB_interface)::get(this,"","vif",vif))
 			`uvm_fatal(get_type_name(),$sformatf("virtual interface must be set for:%s",get_full_name()));
 	endfunction
- 
+
 	virtual task reset_phase(uvm_phase phase);
 		super.reset_phase(phase);
 		phase.raise_objection(this);
@@ -46,11 +45,11 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 		wait(vif.HRESETn);
 		phase.drop_objection(this);
 	endtask
-                                               
+
 	virtual task run_phase(uvm_phase phase);
 		super.run_phase(phase);
 		phase.raise_objection(this);
-		forever 
+		forever
 		begin
 			seq_item_port.get_next_item(req);
 			wait(vif.HRESETn)
@@ -61,15 +60,15 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 	endtask
 
 	task drive();
-		
+
 		int j;
-		
+
 		forever
 		begin
 			vif.driver_cb.HBURST 	<= req.HBURST;
 			vif.driver_cb.HSIZE 	<= req.HSIZE;
 			vif.driver_cb.HWRITE 	<= req.HWRITE;
-			
+
 			for(int i =0;i < req.HADDR.size;i++)
 			begin
 				vif.driver_cb.HADDR  <= req.HADDR[i];
@@ -82,12 +81,12 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 				end
 				@(vif.driver_cb);
 				j++;
-				while(!vif.mdrv_cb.HREADY) 
+				while(!vif.mdrv_cb.HREADY)
 					@(vif.driver_cb);
 				if(req.read_write)
 					vif.driver_cb.HWDATA <= req.HWDATA[i];
-			end	
+			end
 		end
 	endtask
-	
+
 endclass

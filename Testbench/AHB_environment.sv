@@ -11,15 +11,9 @@
 //                                                     //
 /////////////////////////////////////////////////////////
 
-
-
-
+import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "AHB_virtual_sequencer.sv"
-`include "AHB_coverage.sv"
-`include "AHB_agent.sv"
-
 class AHB_env extends uvm_env;
 
 	`uvm_component_utils(AHB_env)
@@ -42,8 +36,8 @@ class AHB_env extends uvm_env;
 	endfunction
 
 	function void connect_phase(uvm_phase phase);
-		agent.monitor.analysis_port.connect(coverage.analysis_imp);
-		agent.monitor.analysis_port.connect(scoreboard.analysis_imp);
+		agent.monitor.monitor_data.connect(coverage.analysis_imp);
+		agent.monitor.monitor_data.connect(scoreboard.pkt_imp);
 	endfunction
 
 endclass

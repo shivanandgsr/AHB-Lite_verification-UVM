@@ -1,43 +1,42 @@
 //Project : Verification of AMBA3 AHB-Lite protocol    //
-//			using Universal Verification Methodology   //																				    
-//													   //															
-// Subject:	ECE 593									   //										                        																															    
-// Guide  : Tom Schubert   							   //													            
-// Date   : May 25th, 2021							   //																		
+//			using Universal Verification Methodology   //
+//													   //
+// Subject:	ECE 593									   //
+// Guide  : Tom Schubert   							   //
+// Date   : May 25th, 2021							   //
 // Team	  :	Shivanand Reddy Gujjula,                   //
 //			Sri Harsha Doppalapudi,                    //
-//			Hiranmaye Sarpana Chandu	               //																										
-// Portland State University                           //  
-//                                                     //                                                     
+//			Hiranmaye Sarpana Chandu	               //
+// Portland State University                           //
+//                                                     //
 /////////////////////////////////////////////////////////
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-
 class AHB_sequence_item extends uvm_sequence_item;
 
 	`uvm_object_utils(AHB_sequence_item)
-	
+
 	rand HTRANS_TYPE HTRANS[];			// Transfer type array
-    rand HSIZE_TYPE HSIZE;				// Burst size 
+    rand HSIZE_TYPE HSIZE;				// Burst size
     rand HBURST_TYPE HBURST;			// Burst type
     rand HWRITE_TYPE HWRITE;			// Read or write signal
 	rand bit [DATAWIDTH-1:0] HWDATA[];	// Write data array
 	rand bit [ADDRWIDTH-1:0] HADDR[];	// HADDR array
-	
-	bit HREADY;							
+
+	bit HREADY;
 	HRESP_TYPE HRESP;					// Response type (output signal)
-	bit [DATAWIDTH-1:0] HRDATA;			// Read data 
+	bit [DATAWIDTH-1:0] HRDATA;			// Read data
 
     rand bit BUSY_P[];					// Array to store BUSY positions
     rand int NUM_BUSY;					// No. of BUSY states
-	
+
 	function new (string name = "AHB_sequence_item");
 		super.new(name);
 	endfunction
-    
+
 	function void post_randomize();
-	
+
 		int COUNT;
 		if(HBURST != SINGLE)
 			foreach(BUSY[i])
@@ -46,7 +45,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 				begin
 					if(HBURST != INCR && i != HTRANS.size - 1)
 						HTRANS[i] = BUSY;
-					else 
+					else
 						HTRANS[i] = BUSY;
 					COUNT++;
 				end
@@ -54,7 +53,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 					break;
 			end
 	endfunction
-	
+
     constraint BUSY_COUNT{
                             NUM_BUSY inside{[0:HADDR.size]};
                         }
@@ -75,7 +74,7 @@ class AHB_sequence_item extends uvm_sequence_item;
     constraint hsize{
 						HSIZE == WORD;
                     }
-						
+
 	constraint AddrHighbits {foreach(HADDR[i])
 								HADDR[i][31:11] == '0;
 							}
@@ -83,7 +82,7 @@ class AHB_sequence_item extends uvm_sequence_item;
     constraint AddrMin{
                         HADDR.size > 0;
                       }
-					  
+
 	// No. of HADDRes to be generated based on HBURST type
     constraint Addr {
 						if(HBURST == SINGLE)
@@ -97,7 +96,7 @@ class AHB_sequence_item extends uvm_sequence_item;
                         else if(HBURST inside{INCR16,WRAP16})
                                 HADDR.size == 16;
                         }
-						
+
 	// Limitation to HADDR in incrmenting BURSTS - 1KB HADDR space as slaves are 1 KB HADDRable
     constraint ADDR_SPACE_1KB {
 								if(HBURST == INCR)
@@ -109,7 +108,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 								else if(HBURST inside{INCR16,WRAP16})
 									HADDR[0][9:0] <= (1024 - 16*(2**HSIZE));
 								}
-							
+
 	// HADDR alignment
     constraint ADDR_ALIGNMENT{
 									if(HSIZE == BYTE)
@@ -122,7 +121,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 										foreach(HADDR[i])
 											HADDR[i][2:0] == '0;
 								}
-								
+
 	// HADDR generation in increment BURSTS
     constraint ADDR_INCR{
 							if(HBURST inside{INCR,INCR4,INCR8,INCR16})
@@ -132,7 +131,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 						}
 
 	// HADDR generation in wrapping BURSTS
-   
+
 	constraint ADDR_WRAP{
 							if(HBURST == WRAP4)
 							{
@@ -198,7 +197,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 												   }
 							}
 						}
-						
+
 	// transfer type for SINGLE BURST
     constraint HTRANS_SINGLE {
 								if(HBURST == SINGLE)
@@ -207,9 +206,9 @@ class AHB_sequence_item extends uvm_sequence_item;
                                     HTRANS[0] inside {IDLE, NONSEQ};
 								}
 							}
-							
+
 	// transfer type for other BURSTS
-    constraint HTRANS_OTHER {	
+    constraint HTRANS_OTHER {
 								if(HBURST != SINGLE)
 								{
 									HTRANS.size == HADDR.size + NUM_BUSY;
@@ -222,4 +221,3 @@ class AHB_sequence_item extends uvm_sequence_item;
 							}
 
 endclass
-        

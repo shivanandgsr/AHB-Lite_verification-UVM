@@ -1,29 +1,26 @@
 //Project : Verification of AMBA3 AHB-Lite protocol    //
-//			using Universal Verification Methodology   //																				    
-//													   //															
-// Subject:	ECE 593									   //										                        																															    
-// Guide  : Tom Schubert   							   //													            
-// Date   : May 25th, 2021							   //																		
+//			using Universal Verification Methodology   //
+//													   //
+// Subject:	ECE 593									   //
+// Guide  : Tom Schubert   							   //
+// Date   : May 25th, 2021							   //
 // Team	  :	Shivanand Reddy Gujjula,                   //
 //			Sri Harsha Doppalapudi,                    //
-//			Hiranmaye Sarpana Chandu	               //																										
-// Portland State University                           //  
-//                                                     //                                                     
+//			Hiranmaye Sarpana Chandu	               //
+// Portland State University                           //
+//                                                     //
 /////////////////////////////////////////////////////////
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "AHB_sequences.sv"
-`include "AHB_virtual_sequencer.sv"
-
 class AHB_virtual_sequence extends uvm_sequence;
 	`uvm_object_utils(AHB_virtual_sequence)
 	`uvm_declare_p_sequencer(AHB_virtual_sequencer)
-	
+
 	function new(string name = "AHB_virtual_sequence");
 		super.new(name);
 	endfunction
-	
+
 	sequence_SINGLE_burst seq_single;
 	sequence_INCR_burst   seq_incr;
 	sequence_INCR4_burst  seq_incr4;
@@ -32,7 +29,7 @@ class AHB_virtual_sequence extends uvm_sequence;
 	sequence_WRAP4_burst  seq_wrap4;
 	sequence_WRAP8_burst  seq_wrap8;
 	sequence_WRAP16_burst seq_wrap16;
-	
+
 	task prebody();
 		seq_single = sequence_SINGLE_burst::type_id::create("seq_single");
 		seq_incr   = sequence_INCR_burst  ::type_id::create("seq_incr");
@@ -43,7 +40,7 @@ class AHB_virtual_sequence extends uvm_sequence;
 		seq_wrap8  = sequence_WRAP8_burst ::type_id::create("seq_wrap8");
 		seq_wrap16 = sequence_WRAP16_burst::type_id::create("seq_wrap16");
 	endtask
-	
+
 	task body();
 			seq_single.start();
 			seq_incr.start();
@@ -54,5 +51,5 @@ class AHB_virtual_sequence extends uvm_sequence;
 			seq_wrap8.start();
 			seq_wrap16.start();
 	endtask
-	
+
 endclass

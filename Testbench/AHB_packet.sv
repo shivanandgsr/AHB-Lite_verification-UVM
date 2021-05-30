@@ -10,7 +10,9 @@
 // Portland State University                           //
 //                                                     //
 /////////////////////////////////////////////////////////
-
+import AHBpkg::*;
+import uvm_pkg::*;
+`include "uvm_macros.svh"
 class AHB_packet extends uvm_object;
   `uvm_object_utils(AHB_packet)
 
@@ -24,11 +26,11 @@ class AHB_packet extends uvm_object;
     logic [DATAWIDTH-1:0] HWDATA;
     logic [DATAWIDTH-1:0] HRDATA;
 
-    function new (string name = "AHB_packet")
+    function new (string name = "AHB_packet");
       super.new(name);
     endfunction
 
-    virtual function void do_print(uvm_printer printer)
+    virtual function void do_print(uvm_printer printer);
       super.do_print(printer);
       printer.print_field("HRESETn",this.HRESETn,1,UVM_DEC);
       printer.print_string ("HWRITE",this.HWRITE.name());
