@@ -8,42 +8,30 @@ class AHB_scoreboard extends uvm_scoreboard;
 
   uvm_tlm_fifo #(AHB_packet) pkt_imp_fifo;
 
-  AHB_packet FIFO_pkt[$];
+  //AHB_packet FIFO_pkt[$];
   static byte unsigned memory [int];
   static HRESP_TYPE Pre_HRESP;
   static logic [31:0] Pre_HRDATA;
   static int packets_received,packets_passed,packets_failed;
 
-  function new (string name = "AHB_scoreboard", uvm_component parent);
+  function new (string name = "AHB_scoreboard", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
 
-  function void build_phase(uvm_phase phase);
+  virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     pkt_imp = new("pkt_imp",this);
     pkt_imp_fifo = new("pkt_imp_fifo",this);
   endfunction
 
-  function void write(AHB_packet pkt);
-    //pkt_imp_fifo.put(pkt);
-	FIFO_pkt.push_front(pkt);
+  virtual function void write(AHB_packet pkt);
+    void'(pkt_imp_fifo.try_put(pkt));
+	//FIFO_pkt.push_front(pkt);
   endfunction
 
-  task run_phase(uvm_phase phase);
-    AHB_packet pkt;
-    forever
-    begin
-      pkt = FIFO_pkt.pop_back();
-	  //pkt_imp_fifo.get(pkt);
-      packets_received++;
-      predict_output(pkt);
-      check_output(pkt);
-    end
-  endtask
-
   function void predict_output(AHB_packet pkt);
-    if(!pkt.HRESETn)
+    if(!pkt.HRESETn) 
     begin
       Pre_HRESP = OKAY;
       Pre_HRDATA = '0;
@@ -118,8 +106,20 @@ class AHB_scoreboard extends uvm_scoreboard;
       `uvm_info(get_type_name(),$sformatf("Error is packet recived expected outputs HRDATA = %H, HRESP = %f",Pre_HRDATA,Pre_HRESP),UVM_MEDIUM);
     end
   endfunction
+  
+  virtual task run_phase(uvm_phase phase);
+    AHB_packet pkt;
+    forever
+    begin
+      //pkt = FIFO_pkt.pop_back();
+	  pkt_imp_fifo.get(pkt);
+      packets_received++;
+      predict_output(pkt);
+      check_output(pkt);
+    end
+  endtask
 
-  function void report_phase (uvm_phase phase);
+  virtual function void report_phase (uvm_phase phase);
     super.report_phase(phase);
     `uvm_info(get_type_name(),$sformatf("Total No.of packets received = %d/n Total No.of packets without errors = %d/n Total No.of packets with errors = %d ",packets_received,packets_passed,packets_failed),UVM_MEDIUM);
   endfunction

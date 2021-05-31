@@ -19,7 +19,7 @@ class AHB_agent extends uvm_agent;
 
 	AHB_driver    driver;
 	AHB_monitor	  monitor;
-	uvm_sequencer #(AHB_sequence_item) sequencer;
+	AHB_sequencer sequencer;
 
 	function new (string name = "AHB_agent",uvm_component parent = null);
 		super.new(name,parent);
@@ -31,7 +31,7 @@ class AHB_agent extends uvm_agent;
 		if(get_is_active() == UVM_ACTIVE)
 		begin
 			driver 	  = AHB_driver::type_id::create("driver",this);
-			sequencer = uvm_sequencer #(AHB_sequence_item)::type_id::create("sequencer",this);
+			sequencer = AHB_sequencer::type_id::create("sequencer",this);
 		end
 
 		monitor	= AHB_monitor::type_id::create("monitor",this);

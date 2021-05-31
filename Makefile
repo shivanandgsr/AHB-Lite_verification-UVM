@@ -5,7 +5,8 @@ compile:
 	vlog AHBSlave.sv 
 	vlog AHBSlave_Top.sv 
 	vlog AHB_pkg.sv 
-	vlog AHB_interface.sv 
+	vlog AHB_interface.sv
+	vlog AHB_sequencer.sv 
 	vlog AHB_sequence_item.sv 
 	vlog AHB_sequences.sv 
 	vlog AHB_virtual_sequencer.sv 

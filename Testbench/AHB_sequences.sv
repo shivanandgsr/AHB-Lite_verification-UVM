@@ -16,7 +16,7 @@ import uvm_pkg::*;
 class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 
 	`uvm_object_utils(AHB_base_sequence)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "AHB_base_sequence");
 		super.new(name);
@@ -213,7 +213,7 @@ endclass
 class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_SINGLE_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_SINGLE_burst");
 		super.new(name);
@@ -228,7 +228,7 @@ endclass
 class sequence_INCR_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_INCR_burst");
 		super.new(name);
@@ -243,7 +243,7 @@ endclass
 class sequence_INCR4_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR4_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_INCR4_burst");
 		super.new(name);
@@ -258,7 +258,7 @@ endclass
 class sequence_INCR8_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR8_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_INCR8_burst");
 		super.new(name);
@@ -273,7 +273,7 @@ endclass
 class sequence_INCR16_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_INCR16_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_INCR16_burst");
 		super.new(name);
@@ -289,7 +289,7 @@ endclass
 class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_WRAP4_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_WRAP4_burst");
 		super.new(name);
@@ -305,7 +305,7 @@ endclass
 class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_WRAP8_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_WRAP8_burst");
 		super.new(name);
@@ -320,7 +320,7 @@ endclass
 class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_WRAP16_burst)
-	`uvm_declare_p_sequencer(uvm_sequencer #(AHB_sequence_item))
+	//`uvm_declare_p_sequencer(AHB_sequencer)
 
 	function new(string name = "sequence_WRAP16_burst");
 		super.new(name);

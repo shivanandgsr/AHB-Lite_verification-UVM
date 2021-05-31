@@ -13,7 +13,6 @@
 
 import AHBpkg::*;
 import uvm_pkg::*;
-`include "uvm_macros.svh"
 
 module AHB_TBtop;
 

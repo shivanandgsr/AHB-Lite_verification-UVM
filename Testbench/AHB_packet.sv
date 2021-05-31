@@ -13,7 +13,7 @@
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-class AHB_packet extends uvm_object;
+class AHB_packet extends uvm_sequence_item;
   `uvm_object_utils(AHB_packet)
 
     logic HRESETn;
