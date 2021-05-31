@@ -28,7 +28,7 @@ module AHB_TBtop;
 		#5 reset =0;
 	end
 	
-	AHB_interface intf(clk,reset);
+	AHB_interface intf(clock,reset);
 	AHBSlaveTop DUT(intf.DUT);
 
 	// DUT instantiation
