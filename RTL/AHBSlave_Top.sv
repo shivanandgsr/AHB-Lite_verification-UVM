@@ -16,10 +16,10 @@
 	parameter AddrBusWidth = 32; // addr bus width
 	parameter AddrSpace = 10; //Addr space of Slave memory
 
-module AHBSlaveTop(AHBInterface SlaveInterface);//input wait_slave_to_master);
+module AHBSlaveTop(AHB_interface SlaveInterface);//input wait_slave_to_master);
 
 	logic [`NoOfSlaves-1:0]		HSEL;	//select line to the slaves
-	logic [`NoOfSlaves-1:0][31:0] 	HRDATA_BUS;
+	logic [`NoOfSlaves-1:0][31:0] HRDATA_BUS;
 	logic [`NoOfSlaves-1:0]		HRESP_BUS;
 	logic [`NoOfSlaves-1:0]		HREADY_BUS;
 	logic [`NoOfSlaves-1:0]		decode_address;

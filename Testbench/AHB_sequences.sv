@@ -22,7 +22,7 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 		super.new(name);
 	endfunction
 
-	function void dseq(AHB_sequence_item pkt,HBURST_TYPE HBURST,HSIZE_TYPE HSIZE,HWRITE_TYPE HWRITE,bit [ADDRWIDTH-1:0] ADDRESS);
+	task dseq(AHB_sequence_item pkt,HBURST_TYPE HBURST,HSIZE_TYPE HSIZE,HWRITE_TYPE HWRITE,bit [ADDRWIDTH-1:0] ADDRESS);
 		start_item(pkt);
 		if(HBURST == INCR)
 			assert(req.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS;})
@@ -37,7 +37,7 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 				`uvm_info(get_type_name(),$sformatf("Randomization Failed HBURST = %s ,HSIZE = %s ,HWRITE = %s",HBURST.name,HSIZE.name,HWRITE.name),UVM_MEDIUM);
 			end
 			finish_item(pkt);
-	endfunction
+	endtask
 
 	task genRWseq(AHB_sequence_item pkt,HBURST_TYPE HBURST);
 		//

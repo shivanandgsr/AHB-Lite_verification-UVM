@@ -81,9 +81,9 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 				end
 				@(vif.driver_cb);
 				j++;
-				while(!vif.mdrv_cb.HREADY)
+				while(!vif.driver_cb.HREADY)
 					@(vif.driver_cb);
-				if(req.read_write)
+				if(req.HWRITE == WRITE)
 					vif.driver_cb.HWDATA <= req.HWDATA[i];
 			end
 		end

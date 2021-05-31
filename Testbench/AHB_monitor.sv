@@ -38,7 +38,7 @@ class AHB_monitor extends uvm_monitor;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     monitor_data = new("monitor_data", this);
-    if(!uvm_config_db #(virtual AHB_Interface)::get(this,"","vintf",vintf))
+    if(!uvm_config_db #(virtual AHB_interface)::get(this,"","vintf",vintf))
                         `uvm_fatal(get_type_name(),$sformatf("virtual interface must be set for:%s",get_full_name()));
   endfunction
 

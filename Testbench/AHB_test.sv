@@ -32,6 +32,10 @@ class AHB_test extends uvm_test;
 		vseq = AHB_virtual_sequence::type_id::create("vseq");
 
 	endfunction
+	
+	virtual function void connect_phase(uvm_phase phase);
+		vseq.sequencer = env.agent.sequencer;
+	endfunction
 
 	task run_phase(uvm_phase phase);
 		super.run_phase(phase);

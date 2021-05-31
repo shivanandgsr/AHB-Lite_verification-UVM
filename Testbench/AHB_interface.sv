@@ -33,6 +33,7 @@ interface AHB_interface (input bit HCLK, input bit HRESETn);
 						HSIZE,
 						HBURST,
 						HTRANS,
+						HWRITE,
 
 					output	HRESP,
 						HREADY,

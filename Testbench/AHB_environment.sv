@@ -36,7 +36,7 @@ class AHB_env extends uvm_env;
 	endfunction
 
 	function void connect_phase(uvm_phase phase);
-		agent.monitor.monitor_data.connect(coverage.analysis_imp);
+		agent.monitor.monitor_data.connect(coverage.analysis_export);
 		agent.monitor.monitor_data.connect(scoreboard.pkt_imp);
 	endfunction
 

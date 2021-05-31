@@ -17,7 +17,7 @@ class AHB_virtual_sequencer extends uvm_sequencer;
 
 	`uvm_component_utils(AHB_virtual_sequencer)
 
-	function new(string name = "AHB_virtual_sequencer", string parent = "uvm_component");
+	function new(string name = "AHB_virtual_sequencer", uvm_component parent=null);
 		super.new(name,parent);
 	endfunction
 

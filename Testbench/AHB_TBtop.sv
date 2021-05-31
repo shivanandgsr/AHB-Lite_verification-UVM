@@ -10,8 +10,11 @@
 // Portland State University                           //
 //                                                     //
 /////////////////////////////////////////////////////////
+
+import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+
 module AHB_TBtop;
 
 	bit clock;
@@ -24,18 +27,20 @@ module AHB_TBtop;
 		reset <= 1;
 		#5 reset =0;
 	end
-
-	AHB_Interface intf(clk,reset);
+	
+	AHB_interface intf(clk,reset);
+	AHBSlaveTop DUT(intf.DUT);
 
 	// DUT instantiation
 
 	initial
 	begin
-		uvm_config_db#(virtual AHB_Interface)::set(uvm_root::get(),"*","vif",intf);
+		uvm_config_db#(virtual AHB_interface)::set(uvm_root::get(),"*","vif",intf);
 	end
 
 	initial begin
-		run_test();
+		
+		run_test("AHB_test");
 		#10 $finish;
 	end
 

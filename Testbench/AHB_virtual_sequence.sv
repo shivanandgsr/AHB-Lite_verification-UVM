@@ -21,6 +21,8 @@ class AHB_virtual_sequence extends uvm_sequence;
 		super.new(name);
 	endfunction
 
+	uvm_sequencer #(AHB_sequence_item) sequencer;
+	
 	sequence_SINGLE_burst seq_single;
 	sequence_INCR_burst   seq_incr;
 	sequence_INCR4_burst  seq_incr4;
@@ -42,14 +44,14 @@ class AHB_virtual_sequence extends uvm_sequence;
 	endtask
 
 	task body();
-			seq_single.start();
-			seq_incr.start();
-			seq_incr4.start();
-			seq_incr8.start();
-			seq_incr16.start();
-			seq_wrap4.start();
-			seq_wrap8.start();
-			seq_wrap16.start();
+			seq_single.start(sequencer);
+			seq_incr.start(sequencer);
+			seq_incr4.start(sequencer);
+			seq_incr8.start(sequencer);
+			seq_incr16.start(sequencer);
+			seq_wrap4.start(sequencer);
+			seq_wrap8.start(sequencer);
+			seq_wrap16.start(sequencer);
 	endtask
 
 endclass
