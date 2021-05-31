@@ -43,5 +43,6 @@ package AHBpkg;
 	`include "AHB_coverage.sv"
 	`include "AHB_scoreboard.sv"
 	`include "AHB_environment.sv"
+	`include "AHB_test.sv"
 
 endpackage

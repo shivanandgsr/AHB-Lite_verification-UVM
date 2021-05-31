@@ -8,6 +8,7 @@ class AHB_scoreboard extends uvm_scoreboard;
 
   uvm_tlm_fifo #(AHB_packet) pkt_imp_fifo;
 
+  AHB_packet FIFO_pkt[$];
   static byte unsigned memory [int];
   static HRESP_TYPE Pre_HRESP;
   static logic [31:0] Pre_HRDATA;
@@ -25,14 +26,16 @@ class AHB_scoreboard extends uvm_scoreboard;
   endfunction
 
   function void write(AHB_packet pkt);
-    pkt_imp_fifo.put(pkt);
+    //pkt_imp_fifo.put(pkt);
+	FIFO_pkt.push_front(pkt);
   endfunction
 
   task run_phase(uvm_phase phase);
     AHB_packet pkt;
     forever
     begin
-      pkt_imp_fifo.get(pkt);
+      pkt = FIFO_pkt.pop_back();
+	  //pkt_imp_fifo.get(pkt);
       packets_received++;
       predict_output(pkt);
       check_output(pkt);

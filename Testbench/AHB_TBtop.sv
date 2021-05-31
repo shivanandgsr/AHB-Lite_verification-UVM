@@ -36,10 +36,6 @@ module AHB_TBtop;
 	initial
 	begin
 		uvm_config_db#(virtual AHB_interface)::set(uvm_root::get(),"*","vif",intf);
-	end
-
-	initial begin
-		
 		run_test("AHB_test");
 		#10 $finish;
 	end
