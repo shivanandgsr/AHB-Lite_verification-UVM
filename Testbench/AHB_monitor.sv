@@ -78,7 +78,7 @@ class AHB_monitor extends uvm_monitor;
       packet_data.HRDATA = vintf.HRDATA;
       packet_data.HRESP  = vintf.HRESP;
 
-      monitor_data.write (packet_data);
+      monitor_data.write(packet_data);
     endtask
 
 endclass

@@ -192,13 +192,14 @@ function new (string name = "AHB_coverage",uvm_component parent = null);
   endfunction
 
  virtual function void write (AHB_packet t);
-         fork
+         packet_data = t;
+		 fork
             AHB_functional_coverage.sample();
-            if(t.HTRANS == NONSEQ)
+            if(packet_data.HTRANS == NONSEQ)
             begin
               sequence_of_operations.sample(Prev_addr_1,Prev_addr_2);
               Prev_addr_2 = Prev_addr_1;
-              Prev_addr_1 = t.HADDR;
+              Prev_addr_1 = packet_data.HADDR;
             end
          join
    endfunction
