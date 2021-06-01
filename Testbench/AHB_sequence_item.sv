@@ -39,9 +39,9 @@ class AHB_sequence_item extends uvm_sequence_item;
 
 		int COUNT;
 		if(HBURST != SINGLE)
-			foreach(BUSY[i])
+			foreach(BUSY_P[i])
 			begin
-				if(BUSY[i] && i != 0)
+				if(BUSY_P[i] && i != 0)
 				begin
 					if(HBURST != INCR && i != HTRANS.size - 1)
 						HTRANS[i] = BUSY;
