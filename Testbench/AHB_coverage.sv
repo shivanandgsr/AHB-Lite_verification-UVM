@@ -201,6 +201,6 @@ function new (string name = "AHB_coverage",uvm_component parent = null);
               Prev_addr_2 = Prev_addr_1;
               Prev_addr_1 = packet_data.HADDR;
             end
-         join
+         join_any
    endfunction
 endclass

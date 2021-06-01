@@ -19,7 +19,7 @@ module AHBSlaveMemory(
 	input logic [1:0] HTRANS,
 	input logic HWRITE,
 	input logic HSEL,
-	input logic wait_slave_to_master,
+	//input logic wait_slave_to_master,
 	output logic [31:0] HRDATA,
 	output logic HRESP,
 	output logic HREADY);
@@ -51,11 +51,11 @@ module AHBSlaveMemory(
 			end
 			else begin
 				//make the master wait as long as wait signal is asserted
-				if(wait_slave_to_master) begin
+				/*if(wait_slave_to_master) begin
 					HREADY <= 1'b0;	
 					HRESP  <= 1'b0;
 				end
-				else begin
+				else begin*/
 									
 
 						MemoryArray[addr] <= HWDATA;
@@ -84,7 +84,7 @@ module AHBSlaveMemory(
 							HREADY <= 1'b1;
 							HRESP  <= 1'b0;
 						end
-					end
+					//end
 //				end
 			end
 		end

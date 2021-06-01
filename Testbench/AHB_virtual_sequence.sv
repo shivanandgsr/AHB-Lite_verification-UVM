@@ -13,6 +13,7 @@
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+	
 class AHB_virtual_sequence extends uvm_sequence;
 	`uvm_object_utils(AHB_virtual_sequence)
 	`uvm_declare_p_sequencer(AHB_virtual_sequencer)
@@ -20,9 +21,6 @@ class AHB_virtual_sequence extends uvm_sequence;
 	function new(string name = "AHB_virtual_sequence");
 		super.new(name);
 	endfunction
-	
-	//AHB_virtual_sequencer vseqr;
-	//AHB_sequencer sequencer;
 	
 	sequence_SINGLE_burst seq_single;
 	sequence_INCR_burst   seq_incr;
@@ -33,13 +31,7 @@ class AHB_virtual_sequence extends uvm_sequence;
 	sequence_WRAP8_burst  seq_wrap8;
 	sequence_WRAP16_burst seq_wrap16;
 
-	task prebody();
-		/*if(!$cast(vseqr, m_sequencer))
-                begin
-                        `uvm_fatal(get_full_name(), "Virtual Sequencer cast failed!")
-                end
-		
-		sequencer = vseqr.sequencer;*/
+	task pre_body();
 		seq_single = sequence_SINGLE_burst::type_id::create("seq_single");
 		seq_incr   = sequence_INCR_burst  ::type_id::create("seq_incr");
 		seq_incr4  = sequence_INCR4_burst ::type_id::create("seq_incr4");
@@ -51,14 +43,14 @@ class AHB_virtual_sequence extends uvm_sequence;
 	endtask
 
 	task body();
-			`uvm_do(seq_single);
-			`uvm_do(seq_incr);
-			`uvm_do(seq_incr4);
-			`uvm_do(seq_incr8);
-			`uvm_do(seq_incr16);
-			`uvm_do(seq_wrap4);
-			`uvm_do(seq_wrap8);
-			`uvm_do(seq_wrap16);
+		seq_single.start(p_sequencer.sequencer);
+		/*seq_incr.start(p_sequencer.sequencer);
+		seq_incr4.start(p_sequencer.sequencer);
+		seq_incr8.start(p_sequencer.sequencer);
+		seq_incr16.start(p_sequencer.sequencer);
+		seq_wrap4.start(p_sequencer.sequencer);
+		seq_wrap8.start(p_sequencer.sequencer);
+		seq_wrap16.start(p_sequencer.sequencer);*/
 	endtask
 
 endclass

@@ -84,7 +84,8 @@ class AHB_sequence_item extends uvm_sequence_item;
                       }
 
 	// No. of HADDRes to be generated based on HBURST type
-    constraint Addr {
+    constraint Addr {	solve HSIZE before  HBURST;
+						solve HBURST before HADDR;
 						if(HBURST == SINGLE)
                                 HADDR.size == 1;
                         else if(HBURST == INCR)

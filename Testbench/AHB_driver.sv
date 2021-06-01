@@ -37,21 +37,23 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 		phase.raise_objection(this);
 		wait(!vif.HRESETn);
 		vif.HADDR 	<= 0;
-		vif.HWRITE 	<= 0;
 		vif.HWDATA 	<= 0;
 		vif.HTRANS 	<= 0;
-		vif.HBURST 	<= 0;
-		vif.HSIZE 	<= 0;
+		//`uvm_info(get_type_name(),"Waiting for RESET = 1",UVM_MEDIUM);
 		wait(vif.HRESETn);
+		//`uvm_info(get_type_name(),"RESET = 1",UVM_MEDIUM);
 		phase.drop_objection(this);
 	endtask
 
 	virtual task run_phase(uvm_phase phase);
 		super.run_phase(phase);
 		phase.raise_objection(this);
-		forever
+		//forever
+		repeat(3)
 		begin
+			`uvm_info(get_type_name(),"get_next_item waiting",UVM_MEDIUM);
 			seq_item_port.get_next_item(req);
+			`uvm_info(get_type_name(),"get_next_item received",UVM_MEDIUM);
 			wait(vif.HRESETn)
 			drive();
 			seq_item_port.item_done();
@@ -62,9 +64,8 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 	task drive();
 
 		int j;
-
-		forever
-		begin
+			`uvm_info(get_type_name(),"drive enter",UVM_MEDIUM);
+	
 			vif.driver_cb.HBURST 	<= req.HBURST;
 			vif.driver_cb.HSIZE 	<= req.HSIZE;
 			vif.driver_cb.HWRITE 	<= req.HWRITE;
@@ -86,7 +87,7 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 				if(req.HWRITE == WRITE)
 					vif.driver_cb.HWDATA <= req.HWDATA[i];
 			end
-		end
+	
 	endtask
 
 endclass

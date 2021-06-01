@@ -27,11 +27,10 @@ class AHB_test extends uvm_test;
 
 	virtual function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-
 		env  = AHB_env::type_id::create("env",this);
 		vseq = AHB_virtual_sequence::type_id::create("vseq");
-
 	endfunction
+	
 	
 	task run_phase(uvm_phase phase);
 		super.run_phase(phase);

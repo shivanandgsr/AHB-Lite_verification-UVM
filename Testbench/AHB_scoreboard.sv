@@ -95,7 +95,7 @@ class AHB_scoreboard extends uvm_scoreboard;
   endfunction
 
   function void check_output(AHB_packet pkt);
-    if((pkt.HRDATA == Pre_HRDATA) && (pkt.HRESP == Pre_HRESP))
+    if((pkt.HRDATA === Pre_HRDATA) && (pkt.HRESP == Pre_HRESP))
     begin
       packets_passed++;
     end
@@ -103,14 +103,15 @@ class AHB_scoreboard extends uvm_scoreboard;
     begin
       packets_failed++;
       pkt.print();
-      `uvm_info(get_type_name(),$sformatf("Error is packet recived expected outputs HRDATA = %H, HRESP = %f",Pre_HRDATA,Pre_HRESP),UVM_MEDIUM);
+      `uvm_info(get_type_name(),$sformatf("Error in packet recived expected outputs HRDATA = %H, HRESP = %p",Pre_HRDATA,Pre_HRESP),UVM_MEDIUM);
     end
   endfunction
   
   virtual task run_phase(uvm_phase phase);
     AHB_packet pkt;
-    forever
-    begin
+    //forever
+    repeat(3)
+	begin
       //pkt = FIFO_pkt.pop_back();
 	  pkt_imp_fifo.get(pkt);
       packets_received++;

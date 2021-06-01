@@ -23,8 +23,11 @@ module AHB_TBtop;
 		#5 clock = ~clock;
 
 	initial begin
-		reset <= 1;
-		#5 reset =0;
+		reset <= 0;
+		#20 reset =1;
+		$display("---------------------------------------------------------------------------------------------");
+		$display($time,"ns RESET=%b",reset);
+		$display("---------------------------------------------------------------------------------------------");
 	end
 	
 	AHB_interface intf(clock,reset);

@@ -43,14 +43,17 @@ class AHB_monitor extends uvm_monitor;
   endfunction
 
   virtual task run_phase (uvm_phase phase);
-      packet_data = new();
+      super.run_phase(phase);
+	  phase.raise_objection(this);
+	  packet_data = new();
 
-    forever
+    //forever
+	repeat(3)
         fork
           store_in_data();
           collect_data();
         join_any
-
+	phase.drop_objection(this);
     endtask
 
     virtual task store_in_data();
