@@ -217,5 +217,21 @@ class AHB_sequence_item extends uvm_sequence_item;
                                             HTRANS[i] == SEQ;
 								}
 							}
+	virtual function void do_print(uvm_printer printer);
+		super.do_print(printer);
+		foreach(HTRANS[i])
+			printer.print_string ("HTRANS[i]",this.HTRANS[i].name());
+		foreach(HADDR[i])
+			printer.print_field  ("ADDR[i]",this.HADDR[i],32,UVM_HEX);
+		foreach(BUSY_P[i])
+			printer.print_field ("BUSY_P[i]",this.BUSY_P[i],1,UVM_HEX);
+		printer.print_string ("HWRITE",this.HWRITE.name());
+		printer.print_string ("HRESP",this.HRESP.name());
+		printer.print_string ("HBURST",this.HBURST.name());
+		printer.print_string ("HSIZE",this.HSIZE.name());
+		printer.print_field  ("ADDR",this.HADDR,32,UVM_HEX);
+		printer.print_field  ("HWDATA",this.HWDATA,32,UVM_HEX);
+		printer.print_field  ("HRDATA",this.HRDATA,32,UVM_HEX);
+	endfunction
 
 endclass

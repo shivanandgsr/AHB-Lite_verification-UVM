@@ -62,7 +62,7 @@ class AHB_monitor extends uvm_monitor;
       prev_HSIZE  = vintf.HSIZE;
       prev_HBURST = vintf.HBURST;
       prev_HWRITE = vintf.HWRITE;
-      prev_HWDATA = vintf.HWDATA;
+      //prev_HWDATA = vintf.HWDATA;
       prev_HADDR  = vintf.HADDR;
       prev_HRESETn= vintf.HRESETn;
 
@@ -78,6 +78,7 @@ class AHB_monitor extends uvm_monitor;
       packet_data.HWDATA = prev_HWDATA;
       packet_data.HADDR  = prev_HADDR;
       packet_data.HRESETn = prev_HRESETn;
+      packet_data.HWDATA = vintf.HWDATA;
       packet_data.HRDATA = vintf.HRDATA;
       packet_data.HRESP  = vintf.HRESP;
 
