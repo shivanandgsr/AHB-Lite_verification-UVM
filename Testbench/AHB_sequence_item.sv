@@ -39,9 +39,9 @@ class AHB_sequence_item extends uvm_sequence_item;
 
 		int COUNT;
 		if(HBURST != SINGLE)
-			foreach(BUSY_P[i])
+			foreach(BUSY[i])
 			begin
-				if(BUSY_P[i] && i != 0)
+				if(BUSY[i] && i != 0)
 				begin
 					if(HBURST != INCR && i != HTRANS.size - 1)
 						HTRANS[i] = BUSY;
@@ -62,10 +62,10 @@ class AHB_sequence_item extends uvm_sequence_item;
                            BUSY_P.size == HTRANS.size;
                         }
 	constraint BUSY_POSITION{
-								BUSY_P.sum() == NUM_BUSY;
+								BUSY_P.sum(item) with (int'(item)) == NUM_BUSY;
 							}
 	constraint NOBUSY_FIRST{
-								BUSY_P[0] != '1;
+								BUSY_P[0] == 1'b0;
 							}
 	constraint hwdata{
 						HWDATA.size == HADDR.size;
@@ -76,7 +76,7 @@ class AHB_sequence_item extends uvm_sequence_item;
                     }
 
 	constraint AddrHighbits {foreach(HADDR[i])
-								HADDR[i][31:11] == '0;
+								soft HADDR[i][31:11] == '0;
 							}
 
     constraint AddrMin{
@@ -89,7 +89,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 						if(HBURST == SINGLE)
                                 HADDR.size == 1;
                         else if(HBURST == INCR)
-                                HADDR.size < (1024/(2^HSIZE));
+                                HADDR.size < (1024/(2**HSIZE));
                         else if(HBURST inside{INCR4,WRAP4})
                                 HADDR.size == 4;
                         else if(HBURST inside{INCR8,WRAP8})
@@ -112,15 +112,12 @@ class AHB_sequence_item extends uvm_sequence_item;
 
 	// HADDR alignment
     constraint ADDR_ALIGNMENT{
-									if(HSIZE == BYTE)
+									if(HSIZE == HALFWORD)
 										foreach(HADDR[i])
 											HADDR[i][0] == '0;
-									else if(HSIZE == HALFWORD)
-										foreach(HADDR[i])
-											HADDR[i][1:0] == '0;
 									else if(HSIZE == WORD)
 										foreach(HADDR[i])
-											HADDR[i][2:0] == '0;
+											HADDR[i][1:0] == '0;
 								}
 
 	// HADDR generation in increment BURSTS

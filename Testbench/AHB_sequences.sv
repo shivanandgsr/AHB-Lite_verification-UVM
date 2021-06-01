@@ -25,7 +25,7 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 	task dseq(AHB_sequence_item pkt,HBURST_TYPE HBURST,HSIZE_TYPE HSIZE,HWRITE_TYPE HWRITE,bit [ADDRWIDTH-1:0] ADDRESS);
 		start_item(pkt);
 		if(HBURST == INCR)
-			assert(pkt.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS;})
+			assert(pkt.randomize() with {pkt.HBURST == HBURST;pkt.HSIZE == HSIZE;pkt.HWRITE == HWRITE ;pkt.HADDR[0] == ADDRESS;})
 			begin
 				`uvm_info(get_type_name(),$sformatf("After randomization %p",pkt),UVM_MEDIUM);
 			end
@@ -34,7 +34,7 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 				`uvm_info(get_type_name(),$sformatf("Randomization Failed HBURST = %s ,HSIZE = %s ,HWRITE = %s",HBURST.name,HSIZE.name,HWRITE.name),UVM_MEDIUM);
 			end
 		else
-			assert(pkt.randomize() with {pkt.HBURST == HBURST && pkt.HSIZE == HSIZE && pkt.HWRITE == HWRITE && pkt.HADDR[0] == ADDRESS && pkt.HADDR.size == 5;})
+			assert(pkt.randomize() with {pkt.HBURST == HBURST; pkt.HSIZE == HSIZE; pkt.HWRITE == HWRITE;pkt.HADDR[0] == ADDRESS;pkt.HADDR.size == 5;})
 			begin
 				`uvm_info(get_type_name(),$sformatf("After randomization %p",pkt),UVM_MEDIUM);
 			end
