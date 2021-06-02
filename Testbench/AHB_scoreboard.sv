@@ -26,13 +26,17 @@ class AHB_scoreboard extends uvm_scoreboard;
   endfunction
 
   virtual function void write(AHB_packet pkt);
+	`uvm_info(get_type_name(),"write task waiting to push into fifo ",UVM_MEDIUM);
     void'(pkt_imp_fifo.try_put(pkt));
+	`uvm_info(get_type_name(),"write task done pushing into fifo ",UVM_MEDIUM);
 	//FIFO_pkt.push_front(pkt);
   endfunction
 
   function void predict_output(AHB_packet pkt);
-    if(!pkt.HRESETn) 
+    `uvm_info(get_type_name(),"predict output enter ",UVM_MEDIUM);
+	if(!pkt.HRESETn) 
     begin
+	   `uvm_info(get_type_name(),"predict output if block enter ",UVM_MEDIUM);
       Pre_HRESP = OKAY;
       Pre_HRDATA = '0;
     end
@@ -92,9 +96,11 @@ class AHB_scoreboard extends uvm_scoreboard;
         endcase
       end
     end
+	 `uvm_info(get_type_name(),"predict output exit ",UVM_MEDIUM);
   endfunction
 
   function void check_output(AHB_packet pkt);
+	`uvm_info(get_type_name(),"check_output enter",UVM_MEDIUM);
     if((pkt.HRDATA === Pre_HRDATA) && (pkt.HRESP == Pre_HRESP))
     begin
       packets_passed++;
@@ -102,22 +108,27 @@ class AHB_scoreboard extends uvm_scoreboard;
     else
     begin
       packets_failed++;
-      pkt.print();
-      `uvm_info(get_type_name(),$sformatf("Error in packet recived expected outputs HRDATA = %H, HRESP = %p",Pre_HRDATA,Pre_HRESP),UVM_MEDIUM);
+      //pkt.print();
+      //`uvm_info(get_type_name(),$sformatf("Error in packet recived expected outputs HRDATA = %H, HRESP = %p",Pre_HRDATA,Pre_HRESP),UVM_MEDIUM);
     end
+	`uvm_info(get_type_name(),"check_output exit",UVM_MEDIUM);
   endfunction
   
   virtual task run_phase(uvm_phase phase);
     AHB_packet pkt;
+	`uvm_info(get_type_name(),"run phase enter ",UVM_MEDIUM);
     //forever
-    repeat(3)
+    repeat(5)
 	begin
       //pkt = FIFO_pkt.pop_back();
+	  `uvm_info(get_type_name(),"run phase waiting for fifo get ",UVM_MEDIUM);
 	  pkt_imp_fifo.get(pkt);
+	  `uvm_info(get_type_name(),"run phase received fifo get ",UVM_MEDIUM);
       packets_received++;
       predict_output(pkt);
       check_output(pkt);
     end
+	`uvm_info(get_type_name(),"run phase exit ",UVM_MEDIUM);
   endtask
 
   virtual function void report_phase (uvm_phase phase);

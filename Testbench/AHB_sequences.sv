@@ -27,10 +27,10 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 		start_item(pkt);
 		
 			assert(pkt.randomize() with {HBURST == HBURST && HSIZE == HSIZE && HWRITE == HWRITE && HADDR[0] == ADDRESS;})
-			begin
-				pkt.print();
+			//begin
+				//pkt.print();
 				//`uvm_info(get_type_name(),$sformatf("%s",pkt.convert2string()),UVM_MEDIUM);
-			end
+			//end
 			else
 			begin
 				`uvm_info(get_type_name(),$sformatf("Randomization Failed HBURST = %s ,HSIZE = %s ,HWRITE = %s",HBURST.name,HSIZE.name,HWRITE.name),UVM_MEDIUM);
@@ -225,12 +225,12 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == SINGLE && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == SINGLE && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == SINGLE && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == SINGLE && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 	endtask
 endclass
@@ -250,12 +250,12 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd8};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd8};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd8};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd8};});
+			//req.print();
 		finish_item(req);
 	endtask
 endclass
@@ -275,12 +275,12 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR4 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd12};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR4 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd12};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR4 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd12};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR4 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd12};});
+			//req.print();
 		finish_item(req);
 	endtask
 endclass
@@ -300,12 +300,12 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR8 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR8 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR8 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR8 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 	endtask
 endclass
@@ -325,12 +325,12 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR16 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd12};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR16 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd12};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == INCR16 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd12};});
-			req.print();
+		void'(req.randomize() with {HBURST == INCR16 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd12};});
+			//req.print();
 		finish_item(req);
 
 	endtask
@@ -351,12 +351,12 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 
 	endtask
@@ -377,12 +377,12 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd8};});
-			req.print();
+		void'(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd8};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd8};});
-			req.print();
+		void'(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd8};});
+			//req.print();
 		finish_item(req);
 	endtask
 endclass
@@ -402,12 +402,12 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 		req = AHB_sequence_item::type_id::create("req");
 		//genRWseq(req,hburst);
 		start_item(req);
-		if(req.randomize() with {HBURST == WRAP16 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == WRAP16 && HSIZE == HSIZE && HWRITE == WRITE && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 		start_item(req);
-		if(req.randomize() with {HBURST == WRAP16 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
-			req.print();
+		void'(req.randomize() with {HBURST == WRAP16 && HSIZE == HSIZE && HWRITE == READ  && HADDR[0] == {21'd0,1'd0,10'd4};});
+			//req.print();
 		finish_item(req);
 	endtask
 endclass
