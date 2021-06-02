@@ -36,12 +36,11 @@ class AHB_sequence_item extends uvm_sequence_item;
 	endfunction
 
 	function void post_randomize();
-
 		int COUNT;
 		if(HBURST != SINGLE)
-			foreach(BUSY[i])
+			foreach(BUSY_P[i])
 			begin
-				if(BUSY[i] && i != 0)
+				if(BUSY_P[i] && i != 0)
 				begin
 					if(HBURST != INCR && i != HTRANS.size - 1)
 						HTRANS[i] = BUSY;
@@ -53,6 +52,10 @@ class AHB_sequence_item extends uvm_sequence_item;
 					break;
 			end
 	endfunction
+	
+	//constraint Not_INCR {
+						//	HWRITE != READ;
+						//}
 
     constraint BUSY_COUNT{
                             NUM_BUSY inside{[0:HADDR.size]};
@@ -89,7 +92,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 						if(HBURST == SINGLE)
                                 HADDR.size == 1;
                         else if(HBURST == INCR)
-                                HADDR.size < (1024/(2**HSIZE));
+                                HADDR.size == 5;
                         else if(HBURST inside{INCR4,WRAP4})
                                 HADDR.size == 4;
                         else if(HBURST inside{INCR8,WRAP8})
@@ -217,6 +220,21 @@ class AHB_sequence_item extends uvm_sequence_item;
                                             HTRANS[i] == SEQ;
 								}
 							}
+	/*virtual function string convert2string();
+		string contents = "";
+		
+		$sformat(contents,"%s HTRANS   = %p",contents,HTRANS);
+		$sformat(contents,"%s HBURST   = %p",contents,HTRANS);
+		$sformat(contents,"%s HSIZE    = %p",contents,HTRANS);
+		$sformat(contents,"%s HWRITE   = %p",contents,HTRANS);
+		$sformat(contents,"%s HADDR    = %p",contents,HTRANS);
+		$sformat(contents,"%s HWDATA   = %p",contents,HTRANS);
+		$sformat(contents,"%s BUSY_P   = %p",contents,HTRANS);
+		$sformat(contents,"%s NUM_BUSY = %p",contents,HTRANS);
+		
+		return contents;
+	endfunction*/
+	
 	virtual function void do_print(uvm_printer printer);
 		super.do_print(printer);
 		foreach(HTRANS[i])
@@ -229,8 +247,8 @@ class AHB_sequence_item extends uvm_sequence_item;
 		printer.print_string ("HRESP",this.HRESP.name());
 		printer.print_string ("HBURST",this.HBURST.name());
 		printer.print_string ("HSIZE",this.HSIZE.name());
-		printer.print_field  ("ADDR",this.HADDR,32,UVM_HEX);
-		printer.print_field  ("HWDATA",this.HWDATA,32,UVM_HEX);
+		//printer.print_field  ("HADDR",this.HADDR,32,UVM_HEX);
+		//printer.print_field  ("HWDATA",this.HWDATA,32,UVM_HEX);
 		printer.print_field  ("HRDATA",this.HRDATA,32,UVM_HEX);
 	endfunction
 

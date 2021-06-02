@@ -44,13 +44,13 @@ class AHB_virtual_sequence extends uvm_sequence;
 
 	task body();
 		seq_single.start(p_sequencer.sequencer);
-		/*seq_incr.start(p_sequencer.sequencer);
+		seq_incr.start(p_sequencer.sequencer);
 		seq_incr4.start(p_sequencer.sequencer);
 		seq_incr8.start(p_sequencer.sequencer);
 		seq_incr16.start(p_sequencer.sequencer);
 		seq_wrap4.start(p_sequencer.sequencer);
 		seq_wrap8.start(p_sequencer.sequencer);
-		seq_wrap16.start(p_sequencer.sequencer);*/
+		seq_wrap16.start(p_sequencer.sequencer);
 	endtask
 
 endclass

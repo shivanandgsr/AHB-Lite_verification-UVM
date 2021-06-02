@@ -49,11 +49,11 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 		super.run_phase(phase);
 		phase.raise_objection(this);
 		//forever
-		repeat(3)
+		repeat(16)
 		begin
-			`uvm_info(get_type_name(),"get_next_item waiting",UVM_MEDIUM);
+			//`uvm_info(get_type_name(),"get_next_item waiting",UVM_MEDIUM);
 			seq_item_port.get_next_item(req);
-			`uvm_info(get_type_name(),"get_next_item received",UVM_MEDIUM);
+			//`uvm_info(get_type_name(),"get_next_item received",UVM_MEDIUM);
 			wait(vif.HRESETn)
 			drive();
 			seq_item_port.item_done();
@@ -64,7 +64,7 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 	task drive();
 
 		int j;
-			`uvm_info(get_type_name(),"drive enter",UVM_MEDIUM);
+			//`uvm_info(get_type_name(),"drive enter",UVM_MEDIUM);
 	
 			vif.driver_cb.HBURST 	<= req.HBURST;
 			vif.driver_cb.HSIZE 	<= req.HSIZE;
