@@ -48,7 +48,7 @@ class AHB_monitor extends uvm_monitor;
 	  packet_data = new();
 
     //forever
-	repeat(5)
+	repeat(70)
 	begin
 		`uvm_info(get_type_name(),"repeat loop enter in monitor",UVM_MEDIUM);
         fork
@@ -63,10 +63,10 @@ class AHB_monitor extends uvm_monitor;
 	  `uvm_info(get_type_name(),"store_in_data in monitor",UVM_MEDIUM);
       @(vintf.monitor_cb);
 	  `uvm_info(get_type_name(),"store_in_data in monitor after delay",UVM_MEDIUM);
-      prev_HTRANS = vintf.HTRANS;
-      prev_HSIZE  = vintf.HSIZE;
-      prev_HBURST = vintf.HBURST;
-      prev_HWRITE = vintf.HWRITE;
+      prev_HTRANS = HTRANS_TYPE'(vintf.HTRANS);
+      prev_HSIZE  = HSIZE_TYPE'(vintf.HSIZE);
+      prev_HBURST = HBURST_TYPE'(vintf.HBURST);
+      prev_HWRITE = HWRITE_TYPE'(vintf.HWRITE);
       //prev_HWDATA = vintf.HWDATA;
       prev_HADDR  = vintf.HADDR;
       prev_HRESETn= vintf.HRESETn;
@@ -87,8 +87,9 @@ class AHB_monitor extends uvm_monitor;
       packet_data.HRESETn = prev_HRESETn;
       packet_data.HWDATA = vintf.HWDATA;
       packet_data.HRDATA = vintf.HRDATA;
-      packet_data.HRESP  = vintf.HRESP;
+      packet_data.HRESP  = HRESP_TYPE'(vintf.HRESP);
 	  `uvm_info(get_type_name(),"store_in_data in monitor before write function call",UVM_MEDIUM);
+	  packet_data.print();
       monitor_data.write(packet_data);
 	  `uvm_info(get_type_name(),"store_in_data in monitor task end",UVM_MEDIUM);
     endtask
