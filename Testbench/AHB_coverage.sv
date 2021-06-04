@@ -104,7 +104,7 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
                                                                                           bins Write_transfer_at_boundaries = binsof(AHB_read_write.AHB_write);
                                                                                        }
 
-  Boundaries_with_all_zeros_and_ones:  cross Boundary_check_for_slaves,AHB_write_data;
+  //Boundaries_with_all_zeros_and_ones:  cross Boundary_check_for_slaves,AHB_write_data;
 
 //------------------------------------------------------------------------Coverage for output signals-----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -172,11 +172,11 @@ HWRITE_sop: coverpoint packet_data.HWRITE  {
                                                 bins read_write_write_same_address = (0=>1=>1) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
 
 
-                                                bins write1_write2_write1 = (1=>1=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                bins write1_read2_write1  = (1=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                bins read1_write2_read1   = (0=>1=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                bins read1_read2_write1   = (0=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                bins read1_read2_read1    = (0=>0=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                //bins write1_write2_write1 = (1=>1=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                //bins write1_read2_write1  = (1=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                //bins read1_write2_read1   = (0=>1=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                //bins read1_read2_write1   = (0=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
+                                                //bins read1_read2_read1    = (0=>0=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
                                             }
 
 sop_with_all_Bursts: cross HWRITE_sop, HBURST_sop;
@@ -198,12 +198,13 @@ function new (string name = "AHB_coverage",uvm_component parent = null);
             AHB_functional_coverage.sample();
             if(packet_data.HTRANS == NONSEQ)
             begin
-              sequence_of_operations_coverage.sample(Prev_addr_1,Prev_addr_2); 
+              sequence_of_operations_coverage.sample(Prev_addr_1,Prev_addr_2);
               Prev_addr_2 = Prev_addr_1;
               Prev_addr_1 = packet_data.HADDR;
             end
          join_any
    endfunction
+   
 endclass
 
 //----------------------------------------------End of AHB_coverage----------------------------------------------------------
