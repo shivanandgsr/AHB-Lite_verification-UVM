@@ -70,7 +70,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 	constraint NOBUSY_FIRST{
 								BUSY_P[0] == 1'b0;
 							}
-	constraint hwdata{
+	constraint hwdata{	solve HADDR before HWDATA;
 						HWDATA.size == HADDR.size;
                      }
 
@@ -102,16 +102,16 @@ class AHB_sequence_item extends uvm_sequence_item;
                         }
 
 	// Limitation to HADDR in incrmenting BURSTS - 1KB HADDR space as slaves are 1 KB HADDRable
-    constraint ADDR_SPACE_1KB {
+    /*constraint ADDR_SPACE_1KB { 
 								if(HBURST == INCR)
-									HADDR[0][9:0] <= (1024 - ((HADDR.size)*(2**HSIZE)));
-								else if(HBURST inside{INCR4,WRAP4})
-									HADDR[0][9:0] <= (1024 - 4*(2**HSIZE));
-								else if(HBURST inside{INCR8,WRAP8})
-									HADDR[0][9:0] <= (1024 - 8*(2**HSIZE));
-								else if(HBURST inside{INCR16,WRAP16})
-									HADDR[0][9:0] <= (1024 - 16*(2**HSIZE));
-								}
+									HADDR[0][9:0] inside {[0:(2**10 - 1 - (HADDR.size*((2**HSIZE))))]};
+								else if(HBURST == INCR4)
+									HADDR[0][9:0] inside {[0:(2**10 - 1 - 4*((2**HSIZE)))]};
+								else if(HBURST == INCR8)
+									HADDR[0][9:0] inside {[0:(2**10 - 1 - 8*((2**HSIZE)))]};
+								else if(HBURST == INCR16)
+									HADDR[0][9:0] inside {[0:(2**10 - 1 - 16*((2**HSIZE)))]};
+								}*/
 
 	// HADDR alignment
     constraint ADDR_ALIGNMENT{
@@ -128,7 +128,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 							if(HBURST inside{INCR,INCR4,INCR8,INCR16})
 								foreach(HADDR[i])
 									if(i != 0)
-										HADDR[i] == HADDR[i-1] + 2**HSIZE;
+										HADDR[i] == HADDR[i-1] + (2**HSIZE);
 						}
 
 	// HADDR generation in wrapping BURSTS
@@ -204,7 +204,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 								if(HBURST == SINGLE)
 								{
                                     HTRANS.size == 1;
-                                    HTRANS[0] == NONSEQ;
+                                    HTRANS[0] == {IDLE,NONSEQ};
 								}
 							}
 
@@ -220,6 +220,7 @@ class AHB_sequence_item extends uvm_sequence_item;
                                             HTRANS[i] == SEQ;
 								}
 							}
+							
 	/*virtual function string convert2string();
 		string contents = "";
 		

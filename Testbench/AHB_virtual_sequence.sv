@@ -44,9 +44,7 @@ class AHB_virtual_sequence extends uvm_sequence;
 
 	task body();
 		seq_single.start(p_sequencer.sequencer);
-		`uvm_info(get_type_name(),"seq_single sequence completed",UVM_MEDIUM);
 		seq_incr.start(p_sequencer.sequencer);
-		`uvm_info(get_type_name(),"seq_incr sequence completed",UVM_MEDIUM);
 		seq_incr4.start(p_sequencer.sequencer);
 		seq_incr8.start(p_sequencer.sequencer);
 		seq_incr16.start(p_sequencer.sequencer);

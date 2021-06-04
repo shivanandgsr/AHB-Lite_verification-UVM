@@ -33,7 +33,7 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 		$display("HBURST = %s",HBURST.name());
 		start_item(pkt);
 		
-			assert(pkt.randomize() with {HBURST == HBURST && HSIZE == HSIZE && HWRITE == HWRITE && HADDR[0] == ADDRESS;})
+			assert(pkt.randomize() with {HBURST == HBURST  && HWRITE == HWRITE && HADDR[0] == ADDRESS;})
 			//begin
 				//pkt.print();
 				//`uvm_info(get_type_name(),$sformatf("%s",pkt.convert2string()),UVM_MEDIUM);
@@ -216,6 +216,29 @@ class AHB_base_sequence extends uvm_sequence #(AHB_sequence_item) ;
 	endtask*/
 endclass
 
+
+/*class sequence_IDLE  extends AHB_base_sequence  ;
+
+	`uvm_object_utils(sequence_IDLE)
+	`uvm_declare_p_sequencer(AHB_sequencer)
+
+	function new(string name = "sequence_IDLE");
+		super.new(name);
+	endfunction
+
+	
+	virtual task body();
+		req = AHB_sequence_item::type_id::create("req");
+		for(bit[1:0]slave = 0; slave < 2; slave++)
+			for(int i = 0; i < ADDRESS.size; i++)
+			begin
+				start_item(req);
+				assert(req.randomize() with {HTRANS[0] == IDLE && HBURST == SINGLE;});
+				finish_item(req);
+			end
+	endtask
+endclass*/
+
 class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 
 	`uvm_object_utils(sequence_SINGLE_burst)
@@ -233,7 +256,7 @@ class sequence_SINGLE_burst  extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == SINGLE && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == SINGLE  && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 	endtask
@@ -255,7 +278,7 @@ class sequence_INCR_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == INCR && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == INCR && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 	endtask
@@ -277,7 +300,7 @@ class sequence_INCR4_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == INCR4 && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == INCR4 && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 	endtask
@@ -299,7 +322,7 @@ class sequence_INCR8_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == INCR8 && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == INCR8  && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 	endtask
@@ -321,7 +344,7 @@ class sequence_INCR16_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == INCR16 && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == INCR16  && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 
@@ -344,7 +367,7 @@ class sequence_WRAP4_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == WRAP4 && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == WRAP4  && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 
@@ -367,7 +390,7 @@ class sequence_WRAP8_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == WRAP8 && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == WRAP8  && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 	endtask
@@ -389,7 +412,7 @@ class sequence_WRAP16_burst   extends AHB_base_sequence  ;
 			for(int i = 0; i < ADDRESS.size; i++)
 			begin
 				start_item(req);
-				void'(req.randomize() with {HBURST == WRAP16 && HSIZE == HSIZE && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
+				assert(req.randomize() with {HBURST == WRAP16  && HWRITE == hwrite[i] && HADDR[0] == {21'd0,slave[0],ADDRESS[i]};});
 				finish_item(req);
 			end
 	endtask
