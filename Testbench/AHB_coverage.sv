@@ -205,6 +205,11 @@ function new (string name = "AHB_coverage",uvm_component parent = null);
          join_any
    endfunction
    
+   virtual function void report_phase (uvm_phase phase);
+		super.report_phase(phase);
+		`uvm_info(get_type_name(),$sformatf("\n\n<<FUNCTIONAL COVERAGE>>\nTOTAL FUNCTIONAL COVERAGE = %f\nCOVERAGE FOR AHB_functional_coverage COVERGROUP = %f\nCOVERAGE FOR sequence_of_operations_coverage COVERGROUP = %f\n\n",$get_coverage(),AHB_functional_coverage.get_coverage(),sequence_of_operations_coverage.get_coverage()),UVM_MEDIUM);
+	endfunction
+   
 endclass
 
 //----------------------------------------------End of AHB_coverage----------------------------------------------------------

@@ -147,7 +147,7 @@ class AHB_scoreboard extends uvm_scoreboard;
 
 	virtual function void report_phase (uvm_phase phase);
 		super.report_phase(phase);
-		`uvm_info(get_type_name(),$sformatf("\nTOTAL TRANSFER COUNT     = %0d\nTRANSFER SUCCESS COUNT   = %0d\nTRANSFER FAILURE COUNT   = %0d\nTRANSFER PASS PERCENTAGE = %f\nTRANSFER FAIL PERCENTAGE = %f",packets_received,packets_passed,packets_failed,real'(packets_passed)*100.0/real'(packets_received),real'(packets_failed)*100.0/real'(packets_received)),UVM_MEDIUM);
+		`uvm_info(get_type_name(),$sformatf("\nTOTAL TRANSFER COUNT = %0d\nTRANSFER SUCCESS COUNT = %0d\nTRANSFER FAILURE COUNT = %0d\nTRANSFER PASS PERCENTAGE = %f\nTRANSFER FAIL PERCENTAGE = %f",packets_received,packets_passed,packets_failed,real'(packets_passed)*100.0/real'(packets_received),real'(packets_failed)*100.0/real'(packets_received)),UVM_MEDIUM);
 	endfunction
 	
 endclass
