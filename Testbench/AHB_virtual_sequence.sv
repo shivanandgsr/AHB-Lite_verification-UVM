@@ -15,13 +15,15 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 class AHB_virtual_sequence extends uvm_sequence;
-	`uvm_object_utils(AHB_virtual_sequence)
+	`uvm_object_utils(AHB_virtual_sequence) // register with uvm_factory
 	`uvm_declare_p_sequencer(AHB_virtual_sequencer)
 
 	function new(string name = "AHB_virtual_sequence");
 		super.new(name);
 	endfunction
-
+	
+	//
+	// declare sequences handles
 	sequence_SINGLE_burst seq_single;
 	sequence_INCR_burst   seq_incr;
 	sequence_INCR4_burst  seq_incr4;
@@ -31,6 +33,8 @@ class AHB_virtual_sequence extends uvm_sequence;
 	sequence_WRAP8_burst  seq_wrap8;
 	sequence_WRAP16_burst seq_wrap16;
 
+	//
+	// create sequences
 	task pre_body();
 		seq_single = sequence_SINGLE_burst::type_id::create("seq_single");
 		seq_incr   = sequence_INCR_burst  ::type_id::create("seq_incr");
@@ -41,7 +45,8 @@ class AHB_virtual_sequence extends uvm_sequence;
 		seq_wrap8  = sequence_WRAP8_burst ::type_id::create("seq_wrap8");
 		seq_wrap16 = sequence_WRAP16_burst::type_id::create("seq_wrap16");
 	endtask
-
+	//
+	//  start and run sequences sequentially
 	task body();
 		seq_single.start(p_sequencer.sequencer);
 		seq_incr.start(p_sequencer.sequencer);
@@ -54,3 +59,4 @@ class AHB_virtual_sequence extends uvm_sequence;
 	endtask
 
 endclass
+//---------------------------------------------End of AHB_virtual_sequence-------------------------------------------------------

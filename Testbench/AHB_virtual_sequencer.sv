@@ -13,6 +13,7 @@
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+
 class AHB_virtual_sequencer extends uvm_sequencer;
 	
 	`uvm_component_utils(AHB_virtual_sequencer)
@@ -24,3 +25,4 @@ class AHB_virtual_sequencer extends uvm_sequencer;
 	endfunction
 
 endclass
+//-----------------------------------------------End of AHB_virtual_sequencer------------------------------------------------------
