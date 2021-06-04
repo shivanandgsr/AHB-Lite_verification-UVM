@@ -51,8 +51,8 @@ class AHB_coverage extends uvm_subscriber #(AHB_packet);
                                                                  }
 
    AHB_size:                 coverpoint packet_data.HSIZE      {
-                                                                    bins BYTE                 = {BYTE};
-                                                                    bins HALFWORD             = {HALFWORD};
+                                                                    //bins BYTE                 = {BYTE};
+                                                                    //bins HALFWORD             = {HALFWORD};
                                                                     bins WORD                 = {WORD};
                                                                     ignore_bins INVALID_SIZE  = {[3:7]};
                                                                  }
@@ -80,8 +80,8 @@ class AHB_coverage extends uvm_subscriber #(AHB_packet);
                                                                           }
 
  Transfer_types_with_all_bursts_and_sizes: cross Transfer_types_with_all_bursts, AHB_size  {
-                                                                                              bins transfers_with_BYTE_size = binsof(AHB_size.BYTE);
-                                                                                              bins transfers_with_HALFWORD_size = binsof(AHB_size.HALFWORD);
+                                                                                              //bins transfers_with_BYTE_size = binsof(AHB_size.BYTE);
+                                                                                              //bins transfers_with_HALFWORD_size = binsof(AHB_size.HALFWORD);
                                                                                               bins transfers_with_WORD_size = binsof(AHB_size.WORD);
                                                                                            }
 Read_Write_transfer_types_with_all_bursts_and_sizes: cross Transfer_types_with_all_bursts_and_sizes, AHB_read_write {
@@ -124,9 +124,9 @@ covergroup sequence_of_operations with function sample (logic [ADDRWIDTH-1:0] Pr
 
   HTRANS_sop: coverpoint packet_data.HTRANS {
                                                     bins NONSEQ = {NONSEQ};
-                                                    bins SEQ    = {SEQ};
-                                                    bins BUSY   = {BUSY};
-                                                    bins IDLE   = {IDLE};
+                                                    //bins SEQ    = {SEQ};
+                                                    //bins BUSY   = {BUSY};
+                                                    //bins IDLE   = {IDLE};
                                                     option.weight = 0;
                                                 }
 
@@ -137,8 +137,8 @@ covergroup sequence_of_operations with function sample (logic [ADDRWIDTH-1:0] Pr
                                                                   }
 
   HSIZE_sop: coverpoint packet_data.HSIZE {
-                                              bins BYTE                 = {BYTE};
-                                              bins HALFWORD             = {HALFWORD};
+                                              //bins BYTE                 = {BYTE};
+                                              //bins HALFWORD             = {HALFWORD};
                                               bins WORD                 = {WORD};
                                               ignore_bins INVALID_SIZE  = {[3:7]};
                                               option.weight             = 0;

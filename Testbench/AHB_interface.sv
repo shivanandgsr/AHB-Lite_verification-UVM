@@ -23,7 +23,7 @@ interface AHB_interface (input bit HCLK, input bit HRESETn);
 	logic [DATA_WIDTH-1:0]		HWDATA;
 	logic [DATA_WIDTH-1:0]		HRDATA;
 	logic						HREADY;
-	logic						HRESP;
+	logic						HRESP;					
 
 
 		modport DUT (input 	HCLK,
@@ -49,9 +49,9 @@ interface AHB_interface (input bit HCLK, input bit HRESETn);
 					HSIZE,
 					HADDR;
 
-			input 	HREADY,
+			/*input 	HREADY,
 					HRDATA,
-					HRESP;
+					HRESP;*/
 
         endclocking
 

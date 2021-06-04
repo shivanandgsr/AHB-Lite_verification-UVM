@@ -26,7 +26,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 
 	bit HREADY;
 	HRESP_TYPE HRESP;					// Response type (output signal)
-	bit [DATAWIDTH-1:0] HRDATA;			// Read data
+	//bit [DATAWIDTH-1:0] HRDATA;			// Read data
 
     rand bit BUSY_P[];					// Array to store BUSY positions
     rand int NUM_BUSY;					// No. of BUSY states
@@ -204,7 +204,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 								if(HBURST == SINGLE)
 								{
                                     HTRANS.size == 1;
-                                    HTRANS[0] inside {IDLE, NONSEQ};
+                                    HTRANS[0] == NONSEQ;
 								}
 							}
 
@@ -249,7 +249,7 @@ class AHB_sequence_item extends uvm_sequence_item;
 		printer.print_string ("HSIZE",this.HSIZE.name());
 		//printer.print_field  ("HADDR",this.HADDR,32,UVM_HEX);
 		//printer.print_field  ("HWDATA",this.HWDATA,32,UVM_HEX);
-		printer.print_field  ("HRDATA",this.HRDATA,32,UVM_HEX);
+		//printer.print_field  ("HRDATA",this.HRDATA,32,UVM_HEX);
 	endfunction
 
 endclass

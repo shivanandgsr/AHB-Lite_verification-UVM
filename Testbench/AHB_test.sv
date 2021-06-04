@@ -37,8 +37,9 @@ class AHB_test extends uvm_test;
 		phase.raise_objection(this);
 
 		vseq.start(env.vsequencer);
-
+		`uvm_info(get_type_name(),"before drop_objection in test",UVM_MEDIUM);
 		phase.drop_objection(this);
+		`uvm_info(get_type_name(),"run_phase exit of test",UVM_MEDIUM);
 	endtask
 
 endclass

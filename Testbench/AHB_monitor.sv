@@ -45,24 +45,26 @@ class AHB_monitor extends uvm_monitor;
   virtual task run_phase (uvm_phase phase);
       super.run_phase(phase);
 	  phase.raise_objection(this);
-	  packet_data = new();
-
-    //forever
-	repeat(70)
-	begin
-		`uvm_info(get_type_name(),"repeat loop enter in monitor",UVM_MEDIUM);
-        fork
-          store_in_data();
-          collect_data();
-        join_any
-	end
-	phase.drop_objection(this);
+	  fork
+		packet_data = new();
+		forever
+		begin
+			//`uvm_info(get_type_name(),"repeat loop enter in monitor",UVM_MEDIUM);
+			fork
+				store_in_data();
+				collect_data();
+			join_any
+		end
+		//`uvm_info(get_type_name(),"end of repeat loop",UVM_MEDIUM);
+	  join_none
+	  phase.drop_objection(this);
+		//`uvm_info(get_type_name(),"monitor run phase exit",UVM_MEDIUM);
     endtask
 
     virtual task store_in_data();
-	  `uvm_info(get_type_name(),"store_in_data in monitor",UVM_MEDIUM);
+	  //`uvm_info(get_type_name(),"store_in_data in monitor",UVM_MEDIUM);
       @(vintf.monitor_cb);
-	  `uvm_info(get_type_name(),"store_in_data in monitor after delay",UVM_MEDIUM);
+	  //`uvm_info(get_type_name(),"store_in_data in monitor after delay",UVM_MEDIUM);
       prev_HTRANS = HTRANS_TYPE'(vintf.HTRANS);
       prev_HSIZE  = HSIZE_TYPE'(vintf.HSIZE);
       prev_HBURST = HBURST_TYPE'(vintf.HBURST);
@@ -70,14 +72,14 @@ class AHB_monitor extends uvm_monitor;
       //prev_HWDATA = vintf.HWDATA;
       prev_HADDR  = vintf.HADDR;
       prev_HRESETn= vintf.HRESETn;
-	  `uvm_info(get_type_name(),"store_in_data in monitor task end",UVM_MEDIUM);
+	  //`uvm_info(get_type_name(),"store_in_data in monitor task end",UVM_MEDIUM);
     endtask
 
     virtual task collect_data();
-	  `uvm_info(get_type_name(),"collect_data in monitor",UVM_MEDIUM);
+	  //`uvm_info(get_type_name(),"collect_data in monitor",UVM_MEDIUM);
       @(vintf.monitor_cb);
       @(vintf.monitor_cb);
-	  `uvm_info(get_type_name(),"collect_data in monitor after delay",UVM_MEDIUM);
+	  //`uvm_info(get_type_name(),"collect_data in monitor after delay",UVM_MEDIUM);
       packet_data.HTRANS = prev_HTRANS;
       packet_data.HSIZE  = prev_HSIZE;
       packet_data.HBURST = prev_HBURST;
@@ -88,10 +90,10 @@ class AHB_monitor extends uvm_monitor;
       packet_data.HWDATA = vintf.HWDATA;
       packet_data.HRDATA = vintf.HRDATA;
       packet_data.HRESP  = HRESP_TYPE'(vintf.HRESP);
-	  `uvm_info(get_type_name(),"store_in_data in monitor before write function call",UVM_MEDIUM);
-	  packet_data.print();
+	  //`uvm_info(get_type_name(),"store_in_data in monitor before write function call",UVM_MEDIUM);
+	  //packet_data.print();
       monitor_data.write(packet_data);
-	  `uvm_info(get_type_name(),"store_in_data in monitor task end",UVM_MEDIUM);
+	  //`uvm_info(get_type_name(),"store_in_data in monitor task end",UVM_MEDIUM);
     endtask
 
 endclass

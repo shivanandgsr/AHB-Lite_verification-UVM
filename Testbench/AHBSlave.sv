@@ -1,16 +1,14 @@
-//Project : Verification of AMBA3 AHB-Lite protocol    //
-//			using Universal Verification Methodology   //																				    
-//													   //															
-// Subject:	ECE 593									   //										                        																															    
-// Guide  : Tom Schubert   							   //													            
-// Date   : May 25th, 2021							   //																		
-// Team	  :	Shivanand Reddy Gujjula,                   //
-//			Sri Harsha Doppalapudi,                    //
-//			Hiranmaye Sarpana Chandu	               //																										
-// Portland State University                           //  
-//                                                     //                                                     
-/////////////////////////////////////////////////////////
+/*****************************************************************************************/
+///////////Project  : 	ECE 571 - Verification of AHBLITE protocol///
+///////////Team 	: 	Arjun Gopal, Sri Krishna, Nirliptha Bangalore, Udit Kulshreshta///
+///////////Module	:	Slave Module //////////////
+/*****************************************************************************************/
 
+
+
+/*Module for AHB Slave*/
+/*Synthesizable memory module*/
+/***This slave has read only addresses from 00h to 03h. It uses HTRANS to see if master sends valid data**/
 module AHBSlaveMemory(
 	input logic HCLK,
 	input logic HRESETn,
@@ -19,7 +17,7 @@ module AHBSlaveMemory(
 	input logic [1:0] HTRANS,
 	input logic HWRITE,
 	input logic HSEL,
-	//input logic wait_slave_to_master,
+	input logic wait_slave_to_master,
 	output logic [31:0] HRDATA,
 	output logic HRESP,
 	output logic HREADY);
@@ -51,11 +49,11 @@ module AHBSlaveMemory(
 			end
 			else begin
 				//make the master wait as long as wait signal is asserted
-				/*if(wait_slave_to_master) begin
+				if(wait_slave_to_master) begin
 					HREADY <= 1'b0;	
 					HRESP  <= 1'b0;
 				end
-				else begin*/
+				else begin
 									
 
 						MemoryArray[addr] <= HWDATA;
@@ -84,7 +82,7 @@ module AHBSlaveMemory(
 							HREADY <= 1'b1;
 							HRESP  <= 1'b0;
 						end
-					//end
+					end
 //				end
 			end
 		end
