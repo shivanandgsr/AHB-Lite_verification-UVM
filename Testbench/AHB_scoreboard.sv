@@ -10,8 +10,13 @@ class AHB_scoreboard extends uvm_scoreboard;
 
   //AHB_packet FIFO_pkt[$];
   static byte unsigned memory [int];
-  static HRESP_TYPE Pre_HRESP;
-  static bit [31:0] Pre_HRDATA;
+  static HRESP_TYPE exp_HRESP;
+  static bit [31:0] exp_HRDATA;
+  static HWRITE_TYPE pres_HWRITE,next_HWRITE;
+  static HTRANS_TYPE pres_HTRANS,next_HTRANS;
+  static HBURST_TYPE pres_HBURST,next_HBURST;
+  static HSIZE_TYPE  pres_HSIZE,next_HSIZE;
+  static logic [31:0] pres_HADDR,next_HADDR;
   static int packets_received,packets_passed,packets_failed;
 
   function new (string name = "AHB_scoreboard", uvm_component parent = null);
@@ -33,86 +38,84 @@ class AHB_scoreboard extends uvm_scoreboard;
   endfunction
 
   function void predict_output(AHB_packet pkt);
-    //`uvm_info(get_type_name(),"predict output enter ",UVM_MEDIUM);
-	if(!pkt.HRESETn) 
-    begin
-	   //`uvm_info(get_type_name(),"predict output if block enter ",UVM_MEDIUM);
-      Pre_HRESP = OKAY;
-      Pre_HRDATA = '0;
-    end
-    else
-    begin
-      if(pkt.HWRITE == WRITE)
-      begin
-        case(pkt.HSIZE)
-            BYTE:     begin
-                        if((pkt.HTRANS == NONSEQ) || (pkt.HTRANS == SEQ))
-                        begin
-                          memory[pkt.HADDR[10:0]] = pkt.HWDATA[7:0];
-                        end
-                      end
-            HALFWORD: begin
-                        if((pkt.HTRANS == NONSEQ) || (pkt.HTRANS == SEQ))
-                        begin
-                          memory[pkt.HADDR[10:0]] = pkt.HWDATA[7:0];
-                          memory[pkt.HADDR[10:0]+1'b1] = pkt.HWDATA[16:8];
-                        end
-                      end
-            WORD:     begin
-                        if((pkt.HTRANS == NONSEQ) || (pkt.HTRANS == SEQ))
-                        begin
-                          memory[pkt.HADDR[10:0]] = pkt.HWDATA[7:0];
-                          memory[pkt.HADDR[10:0]+1'd1] = pkt.HWDATA[15:8];
-                          memory[pkt.HADDR[10:0]+2'd2] = pkt.HWDATA[23:16];
-                          memory[pkt.HADDR[10:0]+2'd3] = pkt.HWDATA[31:24];
-                        end
-                      end
-        endcase
-      end
-      else
-      begin
-        case(pkt.HSIZE)
-            BYTE:     begin
-                        if(pkt.HTRANS inside {NONSEQ,SEQ})
-                        begin
-                          Pre_HRESP = OKAY;
-                          Pre_HRDATA[7:0] = memory[pkt.HADDR[10:0]];
-                        end
-                      end
-            HALFWORD: begin
-                        if(pkt.HTRANS inside {NONSEQ,SEQ})
-                        begin
-                          Pre_HRESP = OKAY;
-                          Pre_HRDATA[15:0] = {memory[pkt.HADDR[10:0]+1'b1],memory[pkt.HADDR[10:0]]};
-                        end
-                      end
-            WORD:     begin
-                        if(pkt.HTRANS inside {NONSEQ,SEQ})
-                        begin
-                          Pre_HRESP = OKAY;
-                          Pre_HRDATA[31:0] = {memory[pkt.HADDR[10:0]+2'd3],memory[pkt.HADDR[10:0]+2'd2],memory[pkt.HADDR[10:0]+2'd1],memory[pkt.HADDR[10:0]]};
-                        end
-                      end
-        endcase
-      end
-    end
-	 //`uvm_info(get_type_name(),"predict output exit ",UVM_MEDIUM);
+	if(!pkt.HRESETn)
+	begin
+		exp_HRDATA = '0;
+		exp_HRESP = OKAY;
+	end
+	else
+	begin
+		pres_HWRITE = next_HWRITE;
+		pres_HTRANS = next_HTRANS;
+		pres_HBURST = next_HBURST;
+		pres_HADDR  = next_HADDR;
+		pres_HSIZE   = next_HSIZE;
+		if(pres_HWRITE == WRITE)
+		begin
+			if(pres_HTRANS inside {NONSEQ,SEQ})
+			begin
+				{memory[pres_HADDR[10:0]+2'd3],memory[pres_HADDR[10:0]+2'd2],memory[pres_HADDR[10:0]+2'd1],memory[pres_HADDR[10:0]]} = pkt.HWDATA;
+				exp_HRDATA = exp_HRDATA;
+				exp_HRESP  = OKAY;
+			end
+			else
+			begin
+				exp_HRDATA = exp_HRDATA;
+				exp_HRESP = OKAY;
+			end
+		end
+		else
+		begin
+			if(pres_HTRANS inside {NONSEQ,SEQ})
+			begin
+				exp_HRDATA = {memory[pres_HADDR[10:0]+2'd3],memory[pres_HADDR[10:0]+2'd2],memory[pres_HADDR[10:0]+2'd1],memory[pres_HADDR[10:0]]};
+				exp_HRESP = OKAY;
+			end
+			else
+			begin
+				exp_HRDATA = exp_HRDATA;
+				exp_HRESP  = OKAY;
+			end
+		end
+		next_HWRITE = pkt.HWRITE;
+		next_HTRANS = pkt.HTRANS;
+		next_HBURST = pkt.HBURST;
+		next_HADDR  = pkt.HADDR;
+		next_HSIZE  = pkt.HSIZE;
+		
+	end
   endfunction
 
   function void check_output(AHB_packet pkt);
 	//`uvm_info(get_type_name(),"check_output enter",UVM_MEDIUM);
-    if((pkt.HRDATA === Pre_HRDATA) && (pkt.HRESP == Pre_HRESP))
-    begin
-      packets_passed++;
-    end
-    else
-    begin
-      packets_failed++;
-     // pkt.print();
-      //`uvm_info(get_type_name(),$sformatf("Error in packet recived expected outputs HRDATA = %H, HRESP = %p",Pre_HRDATA,Pre_HRESP),UVM_MEDIUM);
-	  //$display("memory=%p",memory);
-    end
-	//`uvm_info(get_type_name(),"check_output exit",UVM_MEDIUM);
+	if(pres_HWRITE == READ)
+	begin
+		if((pkt.HRDATA === exp_HRDATA) && (pkt.HRESP === exp_HRESP))
+		begin
+			packets_passed++;
+		end
+		else
+		begin
+			packets_failed++;
+			pkt.print();
+			`uvm_info(get_type_name(),$sformatf("Error in packet recived expected outputs HRDATA = %H, HRESP = %p",exp_HRDATA,exp_HRESP),UVM_MEDIUM);
+			//$display("memory=%p",memory);
+		end
+	end
+	else
+	begin
+		if(pkt.HRESP === exp_HRESP)
+		begin
+			packets_passed++;
+		end
+		else
+		begin
+			packets_failed++;
+			pkt.print();
+			`uvm_info(get_type_name(),$sformatf("Error in packet recived expected output HRESP = %p",exp_HRESP),UVM_MEDIUM);
+		end
+	end
+		//`uvm_info(get_type_name(),"check_output exit",UVM_MEDIUM);
   endfunction
   
   virtual task run_phase(uvm_phase phase);

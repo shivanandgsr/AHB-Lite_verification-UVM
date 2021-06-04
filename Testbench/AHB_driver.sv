@@ -92,7 +92,7 @@ class AHB_driver extends uvm_driver #(AHB_sequence_item);
 						//`uvm_info(get_type_name(),$sformatf("HWDATA driven for %p with HWDATA = %H",req.HTRANS[i],req.HWDATA[j]),UVM_MEDIUM);
 						j++;
 					end
-					else if(req.HTRANS[i] == IDLE)
+					else
 					begin
 						@(vif.driver_cb);
 					end

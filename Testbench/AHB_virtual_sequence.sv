@@ -13,7 +13,7 @@
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-	
+
 class AHB_virtual_sequence extends uvm_sequence;
 	`uvm_object_utils(AHB_virtual_sequence)
 	`uvm_declare_p_sequencer(AHB_virtual_sequencer)
@@ -21,7 +21,7 @@ class AHB_virtual_sequence extends uvm_sequence;
 	function new(string name = "AHB_virtual_sequence");
 		super.new(name);
 	endfunction
-	
+
 	sequence_SINGLE_burst seq_single;
 	sequence_INCR_burst   seq_incr;
 	sequence_INCR4_burst  seq_incr4;

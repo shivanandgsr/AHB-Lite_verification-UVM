@@ -51,7 +51,7 @@ class AHB_monitor extends uvm_monitor;
 		begin
 			//`uvm_info(get_type_name(),"repeat loop enter in monitor",UVM_MEDIUM);
 			fork
-				store_in_data();
+				//store_in_data();
 				collect_data();
 			join_any
 		end
@@ -77,16 +77,16 @@ class AHB_monitor extends uvm_monitor;
 
     virtual task collect_data();
 	  //`uvm_info(get_type_name(),"collect_data in monitor",UVM_MEDIUM);
-      @(vintf.monitor_cb);
+      //@(vintf.monitor_cb);
       @(vintf.monitor_cb);
 	  //`uvm_info(get_type_name(),"collect_data in monitor after delay",UVM_MEDIUM);
-      packet_data.HTRANS = prev_HTRANS;
-      packet_data.HSIZE  = prev_HSIZE;
-      packet_data.HBURST = prev_HBURST;
-      packet_data.HWRITE = prev_HWRITE;
-      packet_data.HWDATA = prev_HWDATA;
-      packet_data.HADDR  = prev_HADDR;
-      packet_data.HRESETn = prev_HRESETn;
+      packet_data.HTRANS = HTRANS_TYPE'(vintf.HTRANS);
+      packet_data.HSIZE  = HSIZE_TYPE'(vintf.HSIZE);
+      packet_data.HBURST = HBURST_TYPE'(vintf.HBURST);
+      packet_data.HWRITE = HWRITE_TYPE'(vintf.HWRITE);
+      //packet_data.HWDATA = prev_HWDATA;
+      packet_data.HADDR  = vintf.HADDR;
+      packet_data.HRESETn = vintf.HRESETn;
       packet_data.HWDATA = vintf.HWDATA;
       packet_data.HRDATA = vintf.HRDATA;
       packet_data.HRESP  = HRESP_TYPE'(vintf.HRESP);
