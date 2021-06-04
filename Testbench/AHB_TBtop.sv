@@ -25,21 +25,19 @@ module AHB_TBtop;
 	initial begin
 		reset <= 0;
 		#20 reset =1;
-		$display("---------------------------------------------------------------------------------------------");
-		$display($time,"ns RESET=%b",reset);
-		$display("---------------------------------------------------------------------------------------------");
 	end
 	
-	AHB_interface intf(clock,reset);
-	AHBSlaveTop DUT(intf.DUT);
+	AHB_interface intf(clock,reset);// Interface 
+	AHBSlaveTop DUT(intf.DUT);		// DUT instantiation
 
-	// DUT instantiation
 
 	initial
 	begin
-		uvm_config_db#(virtual AHB_interface)::set(uvm_root::get(),"*","vif",intf);
-		run_test("AHB_test");
+		uvm_config_db#(virtual AHB_interface)::set(uvm_root::get(),"*","vif",intf);// set virtual interface visibility to testbench components
+		run_test("AHB_test");	// run the test
 		#10 $finish;
 	end
 
 endmodule
+
+//------------------------------------------------End of AHB_TBtop---------------------------------------------------------

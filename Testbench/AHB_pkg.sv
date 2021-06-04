@@ -19,16 +19,41 @@ package AHBpkg;
 	parameter SLAVE_DATAWIDTH = 32;
 	parameter SLAVE_ADDRWIDTH = 10;
 
-	typedef enum logic [1:0] {IDLE,BUSY,NONSEQ,SEQ} HTRANS_TYPE;
+	typedef enum logic [1:0]{
+							IDLE,
+							BUSY,
+							NONSEQ,
+							SEQ
+							}HTRANS_TYPE; 
 
-	typedef enum logic [2:0] {SINGLE,INCR,WRAP4,INCR4,WRAP8,INCR8,WRAP16,INCR16} HBURST_TYPE;
+	typedef enum logic [2:0]{
+							SINGLE,
+							INCR,
+							WRAP4,
+							INCR4,
+							WRAP8,
+							INCR8,
+							WRAP16,
+							INCR16
+							}HBURST_TYPE;
 
-	typedef enum logic [2:0] {BYTE,HALFWORD,WORD,WORD2,WORD4,WORD8,WORD16,WORD32} HSIZE_TYPE;
+	typedef enum logic [2:0]{
+							BYTE,
+							HALFWORD,
+							WORD,
+							WORD2,
+							WORD4,
+							WORD8,
+							WORD16,
+							WORD32
+							}HSIZE_TYPE;
 
 	typedef enum logic {OKAY,ERROR} HRESP_TYPE;
 
 	typedef enum logic {READ,WRITE} HWRITE_TYPE;
 
+	// include all files in package
+	
 	`include "AHB_sequence_item.sv"
 	`include "AHB_sequencer.sv"
 	`include "AHB_sequences.sv"
@@ -44,3 +69,4 @@ package AHBpkg;
 	`include "AHB_test.sv"
 
 endpackage
+//---------------------------------------------------End of AHBpkg------------------------------------------------

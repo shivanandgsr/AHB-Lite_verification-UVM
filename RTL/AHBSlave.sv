@@ -1,16 +1,14 @@
-//Project : Verification of AMBA3 AHB-Lite protocol    //
-//			using Universal Verification Methodology   //																				    
-//													   //															
-// Subject:	ECE 593									   //										                        																															    
-// Guide  : Tom Schubert   							   //													            
-// Date   : May 25th, 2021							   //																		
-// Team	  :	Shivanand Reddy Gujjula,                   //
-//			Sri Harsha Doppalapudi,                    //
-//			Hiranmaye Sarpana Chandu	               //																										
-// Portland State University                           //  
-//                                                     //                                                     
-/////////////////////////////////////////////////////////
+/*****************************************************************************************/
+///////////Project  : 	ECE 571 - Verification of AHBLITE protocol///
+///////////Team 	: 	Arjun Gopal, Sri Krishna, Nirliptha Bangalore, Udit Kulshreshta///
+///////////Module	:	Slave Module //////////////
+/*****************************************************************************************/
 
+
+
+/*Module for AHB Slave*/
+/*Synthesizable memory module*/
+/***This slave has read only addresses from 00h to 03h. It uses HTRANS to see if master sends valid data**/
 module AHBSlaveMemory(
 	input logic HCLK,
 	input logic HRESETn,
@@ -30,20 +28,23 @@ module AHBSlaveMemory(
 	parameter	read_only_end_address	= 10'h03;
 	//parameter 	wait_address	= 32'h00000005;
 	logic		[9:0]	addr;
-
+	logic 		[31:0] prev_HWDATA;
+	logic 		[31:0] prev_HRDATA;
 	
 	logic	[31:0]	MemoryArray	[2**ADDR_SPACE-1:0];
 	always_ff@(posedge HCLK) begin
 		if(!HRESETn) begin
 			HREADY <= 1'b1;
 			`ifndef ERROR_INJECT
-				HRESP  <= 1'b0;
+				//HRESP  <= 1'b1;
 			`else
-				HRESP  <= 1'b1;		// ERROR INJECTION
+				HRESP  <= 1'b0;		// ERROR INJECTION
 			`endif
 			
 		end
 		else if(HSEL) begin
+			//HRDATA <= prev_HRDATA;
+			//MemoryArray[addr] <= prev_HWDATA;
 			//Slave sends a zero wait state okay response and ignores the transfer if the Master is Idle or Busy
 			if(HTRANS == 2'b00 || HTRANS == 2'b01) begin
 				HREADY	<= 1'b1;
@@ -57,13 +58,13 @@ module AHBSlaveMemory(
 				end
 				else begin
 									
-
-						MemoryArray[addr] <= HWDATA;
+						prev_HWDATA <= HWDATA;
+						MemoryArray[addr] <= prev_HWDATA;
 						if(HWRITE) begin
 							if(HADDR >= 32'h0000_0000 && HADDR <= 32'h0000_0003) begin
 								HREADY <= 1'b1;
 								`ifndef ERROR_INJECT
-									HRESP <= 1'b1;
+									//HRESP <= 1'b1;
 								`else
 									HRESP <= 1'b0;		// ERROR INJECTION
 								`endif
@@ -89,7 +90,6 @@ module AHBSlaveMemory(
 			end
 		end
 	end
-	
 	
 endmodule
 

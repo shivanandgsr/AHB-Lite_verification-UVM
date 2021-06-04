@@ -13,6 +13,7 @@
 import AHBpkg::*;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+
 class AHB_coverage extends uvm_subscriber #(AHB_packet);
 
   `uvm_component_utils(AHB_coverage)
@@ -120,7 +121,7 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
                                                                  }
 endgroup
 //------------------------------------------------------------------Sequence of operations coverage-------------------------------------------------------------------------------------------------------------------------------------------------
-covergroup sequence_of_operations with function sample (logic [ADDRWIDTH-1:0] Prev_addr_1, Prev_addr_2);
+covergroup sequence_of_operations_coverage with function sample (logic [ADDRWIDTH-1:0] Prev_addr_1, Prev_addr_2);
 
   HTRANS_sop: coverpoint packet_data.HTRANS {
                                                     bins NONSEQ = {NONSEQ};
@@ -188,19 +189,21 @@ endgroup
 function new (string name = "AHB_coverage",uvm_component parent = null);
     super.new (name,parent);
     AHB_functional_coverage = new();
-    sequence_of_operations = new();
+    sequence_of_operations_coverage = new();
   endfunction
 
- virtual function void write (AHB_packet t);
+ virtual function void write (AHB_packet t); // get data packet from AHB_monitor
          packet_data = t;
 		 fork
             AHB_functional_coverage.sample();
             if(packet_data.HTRANS == NONSEQ)
             begin
-              sequence_of_operations.sample(Prev_addr_1,Prev_addr_2);
+              sequence_of_operations_coverage.sample(Prev_addr_1,Prev_addr_2); 
               Prev_addr_2 = Prev_addr_1;
               Prev_addr_1 = packet_data.HADDR;
             end
          join_any
    endfunction
 endclass
+
+//----------------------------------------------End of AHB_coverage----------------------------------------------------------

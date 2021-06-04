@@ -25,50 +25,50 @@ interface AHB_interface (input bit HCLK, input bit HRESETn);
 	logic						HREADY;
 	logic						HRESP;					
 
-
-		modport DUT (input 	HCLK,
-						HRESETn,
-						HADDR,
-						HWDATA,
-						HSIZE,
-						HBURST,
-						HTRANS,
-						HWRITE,
-
-					output	HRESP,
-						HREADY,
-						HRDATA
-					);
-
-		clocking driver_cb@(posedge HCLK);
-			default input #1 output #0;
-			output 	HTRANS,
-					HBURST,
-					HWRITE,
-					HWDATA,
-					HSIZE,
-					HADDR;
-
-			/*input 	HREADY,
-					HRDATA,
-					HRESP;*/
-
-        endclocking
-
-		clocking monitor_cb@(posedge HCLK);
-			default input #1 output #0;
-
-			input 	HRESETn,
-					HTRANS,
-					HBURST,
-					HWRITE,
-					HWDATA,
-					HREADY,
-					HRDATA,
-					HSIZE,
+	// modport for DUT
+	modport DUT (input 	HCLK,
+					HRESETn,
 					HADDR,
-					HRESP;
+					HWDATA,
+					HSIZE,
+					HBURST,
+					HTRANS,
+					HWRITE,
 
-        endclocking
+				output	HRESP,
+					HREADY,
+					HRDATA
+				);
+				
+	// driver clocking block
+	clocking driver_cb@(posedge HCLK);
+		default input #1 output #0;
+		output 	HTRANS,
+				HBURST,
+				HWRITE,
+				HWDATA,
+				HSIZE,
+				HADDR;
+
+	endclocking
+
+	// monitor clocking block
+	clocking monitor_cb@(posedge HCLK);
+		default input #1 output #0;
+
+		input 	HRESETn,
+				HTRANS,
+				HBURST,
+				HWRITE,
+				HWDATA,
+				HREADY,
+				HRDATA,
+				HSIZE,
+				HADDR,
+				HRESP;
+
+	endclocking
 
 endinterface
+
+//--------------------------------------------------ENd of AHB_interface----------------------------------------------------
