@@ -58,16 +58,8 @@ class AHB_coverage extends uvm_subscriber #(AHB_packet);
                                                                     ignore_bins INVALID_SIZE  = {[3:7]};
                                                                  }
 
-   AHB_address:              coverpoint packet_data.HADDR[9:0] {
-                                                                    bins all_zeros = {'0};
-                                                                    bins all_ones  = {'1};
-                                                                    bins other_than_boundaries = default;
-                                                                 }
-   AHB_write_data:           coverpoint packet_data.HWDATA     {
-                                                                    bins all_zeros = {'0};
-                                                                    bins all_ones  = {'1};
-                                                                    bins other_than_boundaries = default;
-                                                                 }
+   AHB_address:              coverpoint packet_data.HADDR[9:0];
+   AHB_write_data:           coverpoint packet_data.HWDATA;
 
   //-------------------------------------------------------------Coverage for different transfer types with all possible combinations--------------------------------------------------------------------------------------------------------------
 
@@ -77,7 +69,7 @@ class AHB_coverage extends uvm_subscriber #(AHB_packet);
                                                                               bins SEQ_transfer_with_all_bursts = binsof(AHB_transfer_type.SEQ);
                                                                               bins NONSEQ_transfer_with_all_bursts = binsof(AHB_transfer_type.NONSEQ);
                                                                               ignore_bins BUSY_in_SINGLE_Burst = binsof(AHB_transfer_type.BUSY) && binsof(AHB_Burst_size.SINGLE);
-									      ignore_bins SEQ_in_SINGLE_Burst = binsof(AHB_transfer_type.SEQ) && binsof(AHB_Burst_size.SINGLE);
+																			  ignore_bins SEQ_in_SINGLE_Burst = binsof(AHB_transfer_type.SEQ) && binsof(AHB_Burst_size.SINGLE);
                                                                           }
 
  Transfer_types_with_all_bursts_and_sizes: cross Transfer_types_with_all_bursts, AHB_size  {
@@ -94,18 +86,6 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
                                                                                                                                                             bins Slave1_transfers = binsof(selection_of_two_slaves.slave1_select);
                                                                                                                                                       }
 
-//---------------------------------------------------------Coverage for Boundary conditions---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-  Boundary_check_for_slaves:           cross selection_of_two_slaves,AHB_address;
-
-  Read_write_transfers_at_boundaries:  cross Boundary_check_for_slaves, AHB_read_write {
-                                                                                          bins Read_transfer_at_boundaries = binsof(AHB_read_write.AHB_read);
-                                                                                          bins Write_transfer_at_boundaries = binsof(AHB_read_write.AHB_write);
-                                                                                       }
-
-  //Boundaries_with_all_zeros_and_ones:  cross Boundary_check_for_slaves,AHB_write_data;
-
 //------------------------------------------------------------------------Coverage for output signals-----------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -114,35 +94,28 @@ Read_Write_transfer_types_with_all_bursts_and_sizes_to_all_alaves: cross Read_Wr
                                                                     bins ERROR = {1'b1};
                                                                  }
 
-  AHB_HRDATA:                coverpoint packet_data.HRDATA     {
-                                                                    bins all_ones = {'1};
-                                                                    bins all_zeros = {'0};
-                                                                    bins other_than_boundaries = default;
-                                                                 }
+  AHB_HRDATA:                coverpoint packet_data.HRDATA;
 endgroup
 //------------------------------------------------------------------Sequence of operations coverage-------------------------------------------------------------------------------------------------------------------------------------------------
 covergroup sequence_of_operations_coverage with function sample (logic [ADDRWIDTH-1:0] Prev_addr_1, Prev_addr_2);
 
   HTRANS_sop: coverpoint packet_data.HTRANS {
-                                                    bins NONSEQ = {NONSEQ};
-                                                    //bins SEQ    = {SEQ};
-                                                    //bins BUSY   = {BUSY};
-                                                    //bins IDLE   = {IDLE};
-                                                    option.weight = 0;
+                                                    bins NONSEQ = {NONSEQ};	//sampled only for new transfer (all transfers start with NONSEQ)
+                                                    option.weight = 0; 		//used only for cross coverage
                                                 }
 
   selection_of_two_slaves_sop: coverpoint packet_data.HADDR[10] {
                                                                       bins slave0_select = {1'b0};
                                                                       bins slave1_select = {1'b1};
-                                                                      option.weight = 0;
+                                                                      option.weight = 0;			//used only for cross coverage
                                                                   }
 
   HSIZE_sop: coverpoint packet_data.HSIZE {
-                                              //bins BYTE                 = {BYTE};
-                                              //bins HALFWORD             = {HALFWORD};
+                                              //bins BYTE                 = {BYTE};			//Not implemented in the design
+                                              //bins HALFWORD             = {HALFWORD};		//Not implemented in the design
                                               bins WORD                 = {WORD};
                                               ignore_bins INVALID_SIZE  = {[3:7]};
-                                              option.weight             = 0;
+                                              option.weight             = 0;		//used only for cross coverage
                                             }
  HBURST_sop: coverpoint packet_data.HBURST {
                                                 bins SINGLE  = {SINGLE};
@@ -153,7 +126,7 @@ covergroup sequence_of_operations_coverage with function sample (logic [ADDRWIDT
                                                 bins INCR8   = {INCR8};
                                                 bins WRAP16  = {WRAP16};
                                                 bins INCR16  = {INCR16};
-                                                option.weight = 0;
+                                                option.weight = 0;			//used only for cross coverage
                                              }
 
 HWRITE_sop: coverpoint packet_data.HWRITE  {
@@ -170,13 +143,6 @@ HWRITE_sop: coverpoint packet_data.HWRITE  {
                                                 bins write_read_write_same_address = (1=>0=>1) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
                                                 bins read_write_read_same_address =  (0=>1=>0) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
                                                 bins read_write_write_same_address = (0=>1=>1) iff ((Prev_addr_1 == packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-
-
-                                                //bins write1_write2_write1 = (1=>1=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                //bins write1_read2_write1  = (1=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                //bins read1_write2_read1   = (0=>1=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                //bins read1_read2_write1   = (0=>0=>1) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
-                                                //bins read1_read2_read1    = (0=>0=>0) iff ((Prev_addr_1 != packet_data.HADDR)&&(Prev_addr_2 == packet_data.HADDR));
                                             }
 
 sop_with_all_Bursts: cross HWRITE_sop, HBURST_sop;
